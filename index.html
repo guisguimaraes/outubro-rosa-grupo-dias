@@ -18,7 +18,7 @@
   --rose-mid:#ff8fc0;      /* bordas da referência */
   --rose:#f0287e;          /* pink Grupo Dias */
   --plum:#5a1238;          /* texto */
-  --plum-soft:rgba(90,18,56,.62);
+  --plum-soft:rgba(90,18,56,.78);
   --ink:var(--plum);
   --white:#ffffff;
   --hairline:rgba(90,18,56,.12);
@@ -71,7 +71,8 @@ main{width:100%;overflow-x:clip;padding:.5rem}
 
 /* ---------- loader ---------- */
 #loader{position:fixed;inset:0;z-index:200;background:var(--rose-light);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;color:var(--plum);will-change:transform}
-#loader .mark{display:flex;align-items:center;gap:.75rem;font-family:var(--font-display);font-weight:500;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(16px)}
+#loader .mark{opacity:0;transform:translateY(16px)}
+#loader .mark img{width:18rem;height:auto}
 #loader .track{width:10rem;height:1px;border-radius:var(--radius-pill);background:rgba(90,18,56,.15);overflow:hidden}
 #loader .fill{height:100%;width:100%;background:var(--rose);transform:scaleX(0);transform-origin:left}
 #loader .ribbon{width:1.75rem;height:1.75rem;color:var(--rose)}
@@ -79,8 +80,10 @@ main{width:100%;overflow-x:clip;padding:.5rem}
 /* ---------- header ---------- */
 header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1.5rem 0;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--plum)}
 @media (min-width:640px){header{padding:2rem 2.5rem 0}}
-.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-size:.9rem;letter-spacing:.2em;white-space:nowrap}
-.brand svg{width:1.25rem;height:1.25rem;color:var(--rose)}
+.brand{display:flex;align-items:center;white-space:nowrap}
+.brand img{height:4.2rem;width:auto;filter:drop-shadow(0 6px 14px rgba(122,15,69,.18))}
+footer .brand img{height:3rem}
+@media (max-width:640px){.brand img{height:3.2rem}}
 header nav{display:none;gap:2rem}
 @media (min-width:1024px){header nav{display:flex}}
 header nav a{opacity:.75}
@@ -103,42 +106,18 @@ header nav a:hover{opacity:1}
 @media (min-width:640px){.hero-bottom{padding:0 2.5rem 2.5rem;flex-direction:row;justify-content:space-between;align-items:flex-end}}
 .tagline{font-family:var(--font-display);font-weight:400;font-size:3.1rem;line-height:1.02;letter-spacing:-.02em;max-width:34rem;margin-top:1.75rem}
 .tagline em{font-size:1.18em;color:var(--rose)}
-.hero-note{margin-top:1.25rem;max-width:26rem;font-size:1rem;color:var(--plum-soft)}
+.hero-note{margin-top:1.25rem;max-width:28rem;font-size:1.05rem;line-height:1.6;color:var(--plum-soft)}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin-top:.5rem}
+.hero-actions .pill{margin-top:1.5rem}
+.link-arrow{margin-top:1.5rem;font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--plum);border-bottom:1px solid rgba(90,18,56,.3);padding-bottom:.2rem;transition:border-color .25s,color .25s}
+.link-arrow:hover{color:var(--rose);border-color:var(--rose)}
+.scroll-hint{display:flex;align-items:center;gap:.75rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--plum-soft)}
+.scroll-hint span{width:2.5rem;height:1px;background:var(--plum-soft);position:relative;overflow:hidden}
+.scroll-hint span::after{content:"";position:absolute;inset:0;background:var(--rose);transform:translateX(-100%);animation:sweep 2.2s ease-in-out infinite}
+@keyframes sweep{to{transform:translateX(100%)}}
+@media (min-width:640px) and (max-height:820px){.scroll-hint{display:none}.hero-bottom{padding-top:.5rem;min-height:0}.tagline{font-size:2.6rem;margin-top:1.25rem}.hero-note{margin-top:1rem}}
 
-/* floating module: Grupo Dias veste rosa */
-.float{width:100%;max-width:24rem;will-change:transform;perspective:1200px}
-@media (min-width:640px){.float{position:absolute;right:2.5rem;bottom:2.5rem;width:25rem;z-index:2}.hero-bottom{min-height:5rem}}
-@media (min-width:640px) and (max-height:820px){.stage{max-height:32vh}.float{width:21rem}}
-.module{border-radius:var(--radius-card);background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px);box-shadow:0 30px 60px -24px rgba(122,15,69,.35),inset 0 1px 0 rgba(255,255,255,.9);padding:1rem;animation:bob 6s ease-in-out infinite;transform-style:preserve-3d}
-@keyframes bob{0%,100%{translate:0 0;rotate:-.6deg}50%{translate:0 -.7rem;rotate:.6deg}}
-.module-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;white-space:nowrap;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--plum-soft)}
-.module-head b{display:flex;align-items:center;gap:.4rem;color:var(--plum)}
-.module-head b i{width:.35rem;height:.35rem;border-radius:50%;background:var(--rose)}
-.arrows{display:flex;gap:.35rem}
-.arrows button{width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.7);color:var(--plum);transition:background .25s,color .25s}
-.arrows button:hover{background:var(--rose);color:#fff}
-.arrows svg{width:.9rem;height:.9rem}
-.stage{position:relative;margin-top:.85rem;aspect-ratio:4/5;max-height:46vh;border-radius:1rem;overflow:hidden;background:#fff;cursor:grab;touch-action:pan-y;user-select:none;transform:translateZ(30px)}
-.stage:active{cursor:grabbing}
-.stage .slide{position:absolute;inset:0;opacity:0;will-change:transform,opacity}
-.stage img{width:100%;height:100%;object-fit:cover;object-position:top;will-change:transform;transition:transform .9s cubic-bezier(.16,1,.3,1)}
-.stage:hover img{transform:scale(1.06)}
-.stage figcaption{position:absolute;left:.6rem;right:.6rem;bottom:.6rem;border-radius:.75rem;background:rgba(255,255,255,.72);backdrop-filter:blur(10px);padding:.7rem .9rem;font-size:.72rem;line-height:1.3;color:var(--plum);transform:translateZ(20px)}
-.stage figcaption b{display:block;font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:1.15rem;letter-spacing:0}
 .glare{position:absolute;inset:-40%;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 38%);opacity:0;transition:opacity .4s;mix-blend-mode:soft-light}
-.stage:hover .glare{opacity:1}
-.ribbon-badge{position:absolute;top:.6rem;right:.6rem;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(240,40,126,.8);animation:pulse 2.6s ease-in-out infinite}
-.ribbon-badge svg{width:1.1rem;height:1.1rem}
-@keyframes pulse{0%,100%{box-shadow:0 8px 18px -8px rgba(240,40,126,.8),0 0 0 0 rgba(240,40,126,.45)}60%{box-shadow:0 8px 18px -8px rgba(240,40,126,.8),0 0 0 .8rem rgba(240,40,126,0)}}
-.module-foot{display:flex;align-items:center;justify-content:space-between;margin-top:.85rem}
-.counter{font-size:.62rem;letter-spacing:.15em;color:var(--plum-soft);font-family:var(--font-display)}
-.counter b{color:var(--plum);font-weight:500}
-.progress{height:2px;margin-top:.7rem;border-radius:var(--radius-pill);background:rgba(90,18,56,.1);overflow:hidden}
-.progress i{display:block;height:100%;width:100%;background:var(--rose);transform:scaleX(0);transform-origin:left}
-.dots{display:flex;gap:.5rem}
-.dots button{padding:.375rem}
-.dots button i{display:block;height:.375rem;width:.375rem;border-radius:var(--radius-pill);background:rgba(90,18,56,.25);transition:width .35s cubic-bezier(.16,1,.3,1),background .35s}
-.dots button[aria-current="true"] i{width:1.25rem;background:var(--rose)}
 
 /* ---------- facts (white) ---------- */
 .facts{position:relative;border-radius:var(--radius-card-lg);margin-top:.75rem;background:var(--white);padding:6rem 1.5rem;overflow:hidden;isolation:isolate}
@@ -154,43 +133,50 @@ header nav a:hover{opacity:1}
 .eyebrow i{width:.375rem;height:.375rem;border-radius:50%;background:var(--rose)}
 .h2{font-family:var(--font-display);font-weight:500;font-size:3.2rem;line-height:.98;letter-spacing:-.03em;margin-top:1rem;max-width:40rem}
 .h2 em,.cta h2 em{font-size:1.12em;color:var(--rose)}
-.lead{margin-top:2rem;max-width:44rem;font-size:1.05rem;line-height:1.6;color:var(--plum-soft)}
+.lead{margin-top:2rem;max-width:42rem;font-family:var(--font-serif);font-weight:400;font-size:1.4rem;line-height:1.5;color:var(--plum)}
+.lead b{font-weight:500;color:var(--rose)}
 .facts-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:4rem}
-@media (min-width:768px){.facts-grid{grid-template-columns:repeat(4,1fr)}}
-.stat{border-radius:var(--radius-card);background:var(--rose-light);padding:1.75rem 1.5rem}
-.stat dd{font-family:var(--font-display);font-weight:500;font-size:3.8rem;line-height:.95;letter-spacing:-.04em;color:var(--plum)}
-.stat dd small{font-size:1.4rem;letter-spacing:0;margin-left:.3rem;color:var(--rose)}
-.stat p{font-size:.88rem;color:var(--plum-soft);margin-top:1rem}
+@media (min-width:768px){.facts-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1280px){.facts-grid{grid-template-columns:repeat(4,1fr)}}
+.stat{border-radius:var(--radius-card);background:var(--rose-light);padding:2rem 1.75rem;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.stat:hover{transform:translateY(-.4rem);box-shadow:0 30px 50px -30px rgba(122,15,69,.35)}
+.stat dd{font-family:var(--font-display);font-weight:500;font-size:4rem;line-height:.95;letter-spacing:-.04em;color:var(--plum)}
+.stat dd small{font-size:1.5rem;letter-spacing:0;margin-left:.3rem;color:var(--rose)}
+.stat p{font-size:1rem;line-height:1.55;color:var(--plum-soft);margin-top:1.1rem}
 .stat p b{color:var(--plum);font-weight:600}
-.block-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:5rem}
+.block-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:5rem}
 @media (min-width:1024px){.block-grid{grid-template-columns:1fr 1fr}}
-.block{border:1px solid var(--hairline);border-radius:var(--radius-card);padding:2rem;background:rgba(255,255,255,.7);backdrop-filter:blur(6px)}
-.block h3,.history h3{font-family:var(--font-serif);font-weight:400;font-size:1.9rem;line-height:1.1;letter-spacing:-.01em;margin-top:1rem;max-width:24rem}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
-.chips li{font-size:.8rem;padding:.5rem .9rem;border-radius:var(--radius-pill);border:1px solid var(--hairline);color:var(--plum);transition:border-color .25s,background .25s,color .25s}
-.chips li:hover{border-color:var(--rose);background:var(--rose);color:#fff}
-.note{margin-top:1.5rem;font-size:.85rem;color:var(--plum-soft)}
-.steps{counter-reset:s;margin-top:1.5rem;display:flex;flex-direction:column;gap:1.25rem}
-.steps li{counter-increment:s;display:grid;grid-template-columns:2.5rem 1fr;gap:.5rem}
-.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--font-display);font-size:.75rem;color:var(--rose);padding-top:.25rem}
-.steps b{display:block;font-weight:600;font-size:1rem}
-.steps span{display:block;grid-column:2;font-size:.85rem;color:var(--plum-soft);margin-top:.25rem}
-.signs{margin-top:5rem;display:grid;grid-template-columns:1fr;gap:2.5rem}
-@media (min-width:1024px){.signs{grid-template-columns:22rem 1fr}}
-.signs-intro p:not(.eyebrow){font-size:.95rem;color:var(--plum-soft);margin-top:1rem;max-width:20rem}
+.block{border:1px solid var(--hairline);border-radius:var(--radius-card);padding:2.5rem;background:rgba(255,255,255,.75);backdrop-filter:blur(6px)}
+.block h3,.history h3{font-family:var(--font-serif);font-weight:500;font-size:2.2rem;line-height:1.08;letter-spacing:-.015em;margin-top:1rem;max-width:26rem;color:var(--plum)}
+.block h3 em,.history h3 em{font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem}
+.chips li{font-size:.92rem;font-weight:500;padding:.65rem 1.1rem;border-radius:var(--radius-pill);border:1px solid rgba(90,18,56,.18);background:#fff;color:var(--plum);transition:border-color .25s,background .25s,color .25s,transform .25s}
+.chips li:hover{border-color:var(--rose);background:var(--rose);color:#fff;transform:translateY(-2px)}
+.note{margin-top:1.75rem;font-size:.95rem;line-height:1.6;color:var(--plum-soft);padding-left:1rem;border-left:2px solid var(--rose-mid)}
+.steps{counter-reset:s;margin-top:1.75rem;display:flex;flex-direction:column;gap:1.5rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.75rem 1fr;gap:.35rem 1rem;align-items:start}
+.steps li::before{content:counter(s,decimal-leading-zero);grid-row:span 2;width:2.75rem;height:2.75rem;border-radius:50%;display:grid;place-items:center;background:var(--rose-light);font-family:var(--font-display);font-size:.72rem;color:var(--rose)}
+.steps b{display:block;font-family:var(--font-serif);font-weight:500;font-size:1.35rem;line-height:1.2;color:var(--plum);padding-top:.5rem}
+.steps span{display:block;grid-column:2;font-size:1rem;line-height:1.6;color:var(--plum-soft)}
+.signs{margin-top:6rem;display:grid;grid-template-columns:1fr;gap:2.5rem}
+@media (min-width:1024px){.signs{grid-template-columns:24rem 1fr;gap:4rem}}
+.signs-intro h3{font-family:var(--font-serif);font-weight:500;font-size:2.2rem;line-height:1.08;margin-top:1rem;color:var(--plum)}
+.signs-intro p:not(.eyebrow){font-size:1.05rem;line-height:1.6;color:var(--plum-soft);margin-top:1.25rem;max-width:22rem}
 .signs ul{border-top:1px solid var(--hairline)}
 .signs li{border-bottom:1px solid var(--hairline)}
-.signs li>div{display:flex;align-items:center;gap:1.5rem;padding:1.5rem 0}
-.signs .k{width:2.5rem;font-size:.75rem;color:var(--rose);font-family:var(--font-display);flex-shrink:0}
+.signs li>div{display:flex;align-items:center;gap:1.75rem;padding:1.9rem 0;transition:padding-left .4s cubic-bezier(.16,1,.3,1)}
+.signs li>div:hover{padding-left:.75rem}
+.signs .k{width:2.5rem;font-size:.8rem;color:var(--rose);font-family:var(--font-display);flex-shrink:0}
 .signs .t{flex:1}
-.signs .t b{display:block;font-family:var(--font-serif);font-weight:500;font-size:1.4rem;letter-spacing:0}
-.signs .t span{display:block;font-size:.85rem;color:var(--plum-soft);margin-top:.25rem}
-.signs .dot{width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid var(--hairline);display:grid;place-items:center;flex-shrink:0;color:var(--rose)}
-.signs .dot svg{width:1.1rem;height:1.1rem}
-.history{margin-top:5rem;padding-top:3rem;border-top:1px solid var(--hairline);display:grid;grid-template-columns:1fr;gap:2rem}
-@media (min-width:1024px){.history{grid-template-columns:22rem 1fr}}
-.history-cols{display:grid;grid-template-columns:1fr;gap:1.5rem;font-size:.95rem;line-height:1.65;color:var(--plum-soft)}
-@media (min-width:768px){.history-cols{grid-template-columns:1fr 1fr;gap:2.5rem}}
+.signs .t b{display:block;font-family:var(--font-serif);font-weight:500;font-size:1.7rem;line-height:1.15;letter-spacing:-.01em;color:var(--plum)}
+.signs .t span{display:block;font-size:1rem;line-height:1.55;color:var(--plum-soft);margin-top:.4rem;max-width:36rem}
+.signs .dot{width:3rem;height:3rem;border-radius:50%;border:1px solid rgba(90,18,56,.18);display:grid;place-items:center;flex-shrink:0;color:var(--rose);background:#fff}
+.signs .dot svg{width:1.15rem;height:1.15rem}
+.history{margin-top:6rem;padding-top:3.5rem;border-top:1px solid var(--hairline);display:grid;grid-template-columns:1fr;gap:2rem}
+@media (min-width:1024px){.history{grid-template-columns:24rem 1fr;gap:4rem}}
+.history-cols{display:grid;grid-template-columns:1fr;gap:1.75rem;font-size:1.08rem;line-height:1.7;color:var(--plum-soft)}
+@media (min-width:768px){.history-cols{grid-template-columns:1fr 1fr;gap:3rem}}
+.history-cols p::first-letter{font-family:var(--font-serif);font-size:2.6em;line-height:.8;float:left;padding:.15em .12em 0 0;color:var(--rose)}
 
 /* ---------- elas (team cards) ---------- */
 .team{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius-card-lg);margin-top:.75rem;background:var(--rose-light);padding:6rem 1.5rem}
@@ -258,10 +244,7 @@ footer nav a:hover{color:var(--plum)}
 <body>
 
 <div id="loader" aria-hidden="true">
-  <div class="mark">
-    <svg class="ribbon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 2-4 4.2 0 3.3 4 6.8 4 6.8s4-3.5 4-6.8C16 5 14.5 3 12 3z"/><path d="M9.6 9.5 5 21M14.4 9.5 19 21"/></svg>
-    Grupo Dias
-  </div>
+  <div class="mark"><img src="assets/logo.png" alt="Clínica Dias"></div>
   <div class="track"><div class="fill"></div></div>
 </div>
 
@@ -274,9 +257,8 @@ footer nav a:hover{color:var(--plum)}
   <div class="grain"></div>
 
   <header>
-    <a class="brand" href="#topo" aria-label="Grupo Dias">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 2-4 4.2 0 3.3 4 6.8 4 6.8s4-3.5 4-6.8C16 5 14.5 3 12 3z"/><path d="M9.6 9.5 5 21M14.4 9.5 19 21"/></svg>
-      Grupo Dias
+    <a class="brand" href="#topo" aria-label="Clínica Dias — Medicina Especializada">
+      <img src="assets/logo.png" alt="Clínica Dias — Medicina Especializada">
     </a>
     <nav>
       <a href="#fatos" data-scroll>Por que outubro</a>
@@ -293,39 +275,15 @@ footer nav a:hover{color:var(--plum)}
       <span>Cuidar de você</span>
       <span>é <em>um ato de amor.</em></span>
     </p>
-    <p class="hero-note" data-inview data-from="0,20" data-delay="700" data-gate="loader">Este mês, o Grupo Dias veste rosa para lembrar: descoberto cedo, o câncer de mama tem cura na grande maioria dos casos.</p>
+    <p class="hero-note" data-inview data-from="0,20" data-delay="700" data-gate="loader">Este mês, a Clínica Dias veste rosa para lembrar: descoberto cedo, o câncer de mama tem cura na grande maioria dos casos.</p>
+    <div class="hero-actions" data-inview data-from="0,20" data-delay="850" data-gate="loader">
+      <a class="pill" href="#agende" data-scroll data-hover-x>Marcar mamografia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="link-arrow" href="#fatos" data-scroll>Por que outubro é rosa</a>
+    </div>
   </div>
 
   <div class="hero-bottom">
-    <div></div>
-
-    <div class="float" data-inview data-from="0,40,0.96" data-delay="650" data-gate="loader" data-spring="200,26" data-parallax="0,-8">
-      <article class="module" aria-roledescription="carrossel" aria-label="Grupo Dias veste rosa">
-        <div class="module-head">
-          <b><i></i>Grupo Dias veste rosa</b>
-          <span class="arrows">
-            <button type="button" id="prev" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-            <button type="button" id="next" aria-label="Próxima foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-          </span>
-        </div>
-        <div class="stage" id="stage">
-          <figure class="slide"><img src="assets/p1.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa da campanha" draggable="false"><figcaption><b>Prevenção é cuidado</b>Time Grupo Dias</figcaption></figure>
-          <figure class="slide"><img src="assets/p2.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa com o logo da empresa" draggable="false"><figcaption><b>Vestimos a causa</b>Time Grupo Dias</figcaption></figure>
-          <figure class="slide"><img src="assets/p3.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa da campanha" draggable="false"><figcaption><b>Cuidar é um ato de amor</b>Time Grupo Dias</figcaption></figure>
-          <span class="glare" aria-hidden="true"></span>
-          <span class="ribbon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 2-4 4.2 0 3.3 4 6.8 4 6.8s4-3.5 4-6.8C16 5 14.5 3 12 3z"/><path d="M9.6 9.5 5 21M14.4 9.5 19 21"/></svg></span>
-        </div>
-        <div class="module-foot">
-          <div class="dots" id="dots" role="tablist" aria-label="Fotos">
-            <button role="tab" aria-current="true" aria-label="Foto 1"><i></i></button>
-            <button role="tab" aria-label="Foto 2"><i></i></button>
-            <button role="tab" aria-label="Foto 3"><i></i></button>
-          </div>
-          <span class="counter"><b id="cur">01</b> / 03</span>
-        </div>
-        <div class="progress"><i id="bar"></i></div>
-      </article>
-    </div>
+    <p class="scroll-hint" data-inview data-from="0,10" data-delay="1200" data-gate="loader"><span></span>Role para descobrir</p>
   </div>
 </section>
 
@@ -340,7 +298,7 @@ footer nav a:hover{color:var(--plum)}
     <span>O que todo mundo</span>
     <span>precisa <em>saber.</em></span>
   </h2>
-  <p class="lead" data-inview data-from="0,20" data-delay="200">O câncer de mama é o mais comum entre as mulheres no Brasil e no mundo. Ele não escolhe idade nem histórico — mas, descoberto cedo, é um dos que mais respondem ao tratamento. Os números abaixo explicam por que um mês inteiro é dedicado a falar disso.</p>
+  <p class="lead" data-inview data-from="0,20" data-delay="200">O câncer de mama é o mais comum entre as mulheres no Brasil e no mundo. Ele não escolhe idade nem histórico — mas, <b>descoberto cedo, é um dos que mais respondem ao tratamento.</b> Os números abaixo explicam por que um mês inteiro é dedicado a falar disso.</p>
 
   <dl class="facts-grid">
     <div class="stat" data-inview data-from="0,30" data-delay="0" data-spring="180,24">
@@ -396,7 +354,8 @@ footer nav a:hover{color:var(--plum)}
   <div class="signs">
     <div class="signs-intro">
       <p class="eyebrow" data-inview data-from="0,14"><i></i>Sinais que merecem atenção</p>
-      <p data-inview data-from="0,20" data-delay="120">Conhecer o próprio corpo é o primeiro exame. Qualquer mudança que persista pede uma consulta — sem pânico, sem adiar.</p>
+      <h3 data-inview data-from="0,20" data-delay="80">O que observar no <em>dia a dia.</em></h3>
+      <p data-inview data-from="0,20" data-delay="160">Conhecer o próprio corpo é o primeiro exame. Qualquer mudança que persista pede uma consulta — sem pânico, sem adiar.</p>
     </div>
     <ul>
       <li><div data-inview data-from="0,26" data-delay="0" data-spring="190,26" data-hover-arrow><span class="k">01</span><span class="t"><b>Nódulo na mama ou axila</b><span>Geralmente indolor, endurecido e fixo. É o sinal mais comum.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
@@ -487,16 +446,13 @@ footer nav a:hover{color:var(--plum)}
     </div>
     <div class="cta-side" data-inview data-from="0,24" data-delay="200" data-spring="200,24">
       <p>Um exame de poucos minutos. Compartilhe com uma mulher que você ama — às vezes o lembrete é o que faltava.</p>
-      <a class="pill" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20campanha%20Outubro%20Rosa%20do%20Grupo%20Dias." target="_blank" rel="noopener" data-hover-x>Falar com o Grupo Dias <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="pill" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20campanha%20Outubro%20Rosa%20da%20Cl%C3%ADnica%20Dias." target="_blank" rel="noopener" data-hover-x>Falar com a Clínica Dias <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 
   <footer>
-    <a class="brand" href="#topo" data-scroll>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 2-4 4.2 0 3.3 4 6.8 4 6.8s4-3.5 4-6.8C16 5 14.5 3 12 3z"/><path d="M9.6 9.5 5 21M14.4 9.5 19 21"/></svg>
-      Grupo Dias
-    </a>
-    <span>Fonte dos dados: INCA · Ministério da Saúde</span>
+    <a class="brand" href="#topo" data-scroll aria-label="Clínica Dias"><img src="assets/logo.png" alt="Clínica Dias — Medicina Especializada"></a>
+    <span>Fonte dos dados: INCA · Ministério da Saúde · SBM</span>
     <nav><a href="#topo" data-scroll>Topo</a><a href="#fatos" data-scroll>Prevenção</a><a href="#elas" data-scroll>Elas</a><a href="#agende" data-scroll>Agende</a></nav>
   </footer>
 </section>
@@ -509,7 +465,6 @@ import Lenis from "lenis";
 /* ---------- constants ---------- */
 const FONT_BASE=16, BASE_W=1920, COEF=0.6666;
 const MIN_VISIBLE_MS=1400, MAX_VISIBLE_MS=2600, EXIT_MS=850;
-const SLIDE_MS=3800;
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isMobile = () => innerWidth <= 768;
 const html=document.documentElement;
@@ -680,46 +635,7 @@ const io=new IntersectionObserver(entries=>{
 },{threshold:0.15});
 document.querySelectorAll("[data-inview],[data-words],[data-lines]").forEach(el=>io.observe(el));
 
-/* ---------- floating module carousel ---------- */
-const slides=[...document.querySelectorAll("#stage .slide")];
-const dots=[...document.querySelectorAll("#dots button")];
-const stageEl=document.getElementById("stage"), moduleEl=document.querySelector(".module");
-const bar=document.getElementById("bar"), curLabel=document.getElementById("cur");
-let cur=0, timer=null;
-function show(i,dir=1){
-  if(i===cur) return;
-  const out=slides[cur], inn=slides[i];
-  if(reduced){ out.style.opacity=0; inn.style.opacity=1; }
-  else{
-    spring(out,{opacity:1,x:0,scale:1},{opacity:0,x:-40*dir,scale:.94},{tension:210,friction:24});
-    spring(inn,{opacity:0,x:40*dir,scale:.94},{opacity:1,x:0,scale:1},{tension:210,friction:24});
-  }
-  dots[cur].removeAttribute("aria-current"); dots[i].setAttribute("aria-current","true");
-  cur=i; curLabel.textContent=String(i+1).padStart(2,"0");
-}
-function go(i,dir){ show(((i%slides.length)+slides.length)%slides.length,dir); }
-function runBar(){
-  if(reduced||!bar) return;
-  bar.style.transition="none"; bar.style.transform="scaleX(0)";
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{ bar.style.transition=`transform ${SLIDE_MS}ms linear`; bar.style.transform="scaleX(1)"; }));
-}
-function startAuto(){ stopAuto(); runBar(); timer=setInterval(()=>{ go(cur+1,1); runBar(); },SLIDE_MS); }
-function stopAuto(){ if(timer) clearInterval(timer); timer=null; if(bar){bar.style.transition="none";bar.style.transform="scaleX(0)";} }
-dots.forEach((d,i)=>d.addEventListener("click",()=>{ go(i,i>cur?1:-1); startAuto(); }));
-document.getElementById("prev").addEventListener("click",()=>{ go(cur-1,-1); startAuto(); });
-document.getElementById("next").addEventListener("click",()=>{ go(cur+1,1); startAuto(); });
-slides[0].style.opacity=1;
-
-/* swipe / drag to change photo */
-let dragX=null;
-stageEl.addEventListener("pointerdown",e=>{ dragX=e.clientX; stageEl.setPointerCapture(e.pointerId); });
-stageEl.addEventListener("pointerup",e=>{
-  if(dragX===null) return; const dx=e.clientX-dragX; dragX=null;
-  if(Math.abs(dx)>40){ go(cur+(dx<0?1:-1),dx<0?1:-1); startAuto(); }
-});
-stageEl.addEventListener("pointercancel",()=>dragX=null);
-
-/* 3D tilt + glare following the pointer (desktop only) */
+/* ---------- 3D tilt + glare following the pointer (desktop only) ---------- */
 function tilt(el,{max=16,onEnter,onLeave}={}){
   if(isMobile()||reduced) return;
   const glare=el.querySelector(".glare");
@@ -734,7 +650,6 @@ function tilt(el,{max=16,onEnter,onLeave}={}){
   el.addEventListener("pointerenter",()=>onEnter&&onEnter());
   el.addEventListener("pointerleave",()=>{ retarget(el,{rx:0,ry:0}); onLeave&&onLeave(); });
 }
-tilt(moduleEl,{onEnter:stopAuto,onLeave:startAuto});
 document.querySelectorAll("[data-tilt]").forEach(el=>tilt(el,{max:12}));
 
 /* ---------- hover micro-interactions (desktop only) ---------- */
@@ -771,7 +686,6 @@ function reveal(){
     setTimeout(()=>loader.remove(),EXIT_MS);
   }
   gated.forEach(el=>el.matches("[data-words],[data-lines]")?playText(el):playInview(el));
-  startAuto();
   if(location.hash&&document.querySelector(location.hash)) lenis.scrollTo(location.hash,{immediate:true,offset:-8});
 }
 let started=false;
