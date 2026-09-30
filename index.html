@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outubro Rosa — Grupo Dias</title>
+<meta name="description" content="Campanha Outubro Rosa do Grupo Dias: prevenção, diagnóstico precoce e cuidado com quem a gente ama.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm" } }
+</script>
+<style>
+:root{
+  --bg:#0b0309;
+  --bg-2:#140612;
+  --ink:#fff4f8;
+  --ink-soft:rgba(255,244,248,.62);
+  --rose:#f0287e;
+  --rose-light:#ffb8d6;
+  --rose-deep:#7a0f45;
+  --hairline:rgba(255,184,214,.16);
+  --radius-card:1.5rem; --radius-card-lg:2rem; --radius-pill:62.5rem;
+  --font-display:"Unbounded",system-ui,sans-serif;
+  --font-body:"Manrope",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:auto}
+@media (max-width:1920px){html{font-size:.833333vw}}
+@media (max-width:1440px){html{font-size:1.111111vw}}
+@media (max-width:1024px){html{font-size:1.5625vw}}
+@media (max-width:640px){html{font-size:4.444444vw}}
+html.locked{position:relative;overflow:hidden;height:100%}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.5}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--rose-light);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+main{width:100%;overflow-x:clip;padding:.5rem}
+@media (min-width:640px){main{padding:.75rem}}
+
+/* ---------- reveal primitives ---------- */
+.clip{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
+.clip>span{display:inline-block;transform:translateY(115%);opacity:0;will-change:transform,opacity}
+.clip.in>span{transform:translateY(0);opacity:1}
+.clip>span{transition:transform var(--dur,950ms) cubic-bezier(.16,1,.3,1) var(--delay,0ms),opacity var(--dur,950ms) cubic-bezier(.16,1,.3,1) var(--delay,0ms)}
+.w{display:inline-block;white-space:pre}
+[data-inview]{opacity:0;will-change:transform,opacity}
+
+/* ---------- loader ---------- */
+#loader{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;color:var(--ink);will-change:transform}
+#loader .mark{display:flex;align-items:center;gap:.75rem;font-family:var(--font-display);font-weight:500;font-size:1.1rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(16px)}
+#loader .track{width:10rem;height:1px;border-radius:var(--radius-pill);background:rgba(255,244,248,.18);overflow:hidden}
+#loader .fill{height:100%;width:100%;background:var(--rose-light);transform:scaleX(0);transform-origin:left}
+#loader .ribbon{width:1.75rem;height:1.75rem}
+
+/* ---------- header ---------- */
+header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1.5rem 0;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+@media (min-width:640px){header{padding:2rem 2.5rem 0}}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-size:.9rem;letter-spacing:.2em}
+.brand svg{width:1.25rem;height:1.25rem}
+header nav{display:none;gap:2rem}
+@media (min-width:1024px){header nav{display:flex}}
+header nav a{opacity:.8}
+header nav a:hover{opacity:1}
+.tag{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border-radius:var(--radius-pill);border:1px solid var(--hairline);background:rgba(255,244,248,.08);backdrop-filter:blur(10px);font-size:.65rem}
+.tag i{width:.4rem;height:.4rem;border-radius:50%;background:var(--rose)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius-card-lg);height:calc(100svh - 1rem);min-height:40rem;display:flex;flex-direction:column;color:var(--ink)}
+@media (min-width:640px){.hero{height:calc(100svh - 1.5rem)}}
+.hero .plate{position:absolute;inset:0;z-index:-10;overflow:hidden}
+.hero .plate .layer{position:absolute;left:0;right:0;top:-16%;height:132%;will-change:transform}
+.hero .plate img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.hero .plate::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,3,9,.55) 0%,rgba(11,3,9,.05) 45%,rgba(11,3,9,.78) 100%)}
+.hero .grain{position:absolute;inset:0;z-index:-9;opacity:.14;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+
+.hero-title{padding:1.5rem 1.5rem 0}
+@media (min-width:640px){.hero-title{padding:2rem 2.5rem 0}}
+.hero h1{font-family:var(--font-display);font-weight:500;text-transform:uppercase;line-height:.86;letter-spacing:-.03em;font-size:12.4vw;white-space:nowrap}
+.hero h1 .clip{display:block}
+.hero h1 .clip:last-child{color:var(--rose-light);padding-left:.08em}
+.hero-eyebrow{margin-top:1.25rem;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:.6rem}
+.hero-eyebrow i{width:.375rem;height:.375rem;border-radius:50%;background:var(--rose)}
+
+.hero-bottom{margin-top:auto;padding:0 1.5rem 2rem;display:flex;flex-direction:column;gap:1.5rem;align-items:flex-start}
+@media (min-width:640px){.hero-bottom{padding:0 2.5rem 2.5rem;flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.tagline{font-family:var(--font-display);font-weight:400;font-size:2.1rem;line-height:1.02;letter-spacing:-.02em;max-width:22rem}
+.tagline em{font-style:normal;color:var(--rose-light)}
+.hero-note{margin-top:1.25rem;max-width:20rem;font-size:.85rem;color:var(--ink-soft)}
+
+/* team cards */
+.team{display:flex;align-items:flex-end;gap:.75rem;will-change:transform}
+.team figure{position:relative;width:8.5rem;aspect-ratio:9/16;border-radius:var(--radius-card);overflow:hidden;background:#f2f2f2;border:1px solid rgba(255,244,248,.18);box-shadow:0 30px 60px -20px rgba(11,3,9,.8);will-change:transform}
+.team figure img{width:100%;height:100%;object-fit:cover;object-position:top}
+.team figure:nth-child(1){translate:0 1.2rem}
+.team figure:nth-child(2){translate:0 -.6rem;width:9.5rem}
+.team figure:nth-child(3){translate:0 1.2rem}
+.team figcaption{position:absolute;left:.5rem;right:.5rem;bottom:.5rem;border-radius:.75rem;background:rgba(122,15,69,.55);backdrop-filter:blur(8px);color:#fff;padding:.5rem .7rem;font-size:.65rem;line-height:1.3}
+.team figcaption b{display:block;font-weight:600;font-size:.72rem}
+@media (max-width:640px){
+  .team{gap:.5rem;align-self:center;justify-content:center;width:100%}
+  .team figure{width:5.2rem}.team figure:nth-child(2){width:5.8rem}.team figcaption{display:none}
+  .tagline,.hero-note{max-width:100%}
+  .hero-eyebrow{max-width:100%}
+}
+.brand{white-space:nowrap}
+
+/* ---------- facts ---------- */
+.facts{position:relative;border-radius:var(--radius-card-lg);margin-top:.75rem;background:var(--bg-2);padding:6rem 1.5rem;overflow:hidden;isolation:isolate}
+@media (min-width:640px){.facts{padding:7rem 2.5rem}}
+.facts .ghost{position:absolute;left:0;right:0;top:50%;translate:0 -50%;z-index:0;pointer-events:none;user-select:none;font-family:var(--font-display);font-weight:700;font-size:26vw;line-height:1;letter-spacing:-.04em;color:rgba(255,184,214,.045);white-space:nowrap;text-transform:uppercase}
+.facts>*:not(.ghost):not(.aurora):not(.fx){position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:var(--ink-soft)}
+.eyebrow i{width:.375rem;height:.375rem;border-radius:50%;background:var(--rose)}
+.h2{font-family:var(--font-display);font-weight:500;font-size:3.2rem;line-height:.98;letter-spacing:-.03em;margin-top:1rem;max-width:40rem}
+.h2 em{font-style:normal;color:var(--rose-light)}
+.facts-grid{display:grid;grid-template-columns:1fr;gap:3rem 2rem;margin-top:4rem}
+@media (min-width:768px){.facts-grid{grid-template-columns:repeat(3,1fr)}}
+.stat{border-top:1px solid var(--hairline);padding-top:1.25rem}
+.stat dd{font-family:var(--font-display);font-weight:500;font-size:4.2rem;line-height:.95;letter-spacing:-.04em}
+.stat dd small{font-size:1.6rem;letter-spacing:0;margin-left:.3rem;color:var(--rose-light)}
+.stat p{font-size:.9rem;color:var(--ink-soft);margin-top:.9rem;max-width:16rem}
+.stat p b{color:var(--ink);font-weight:500}
+.signs{margin-top:5rem;display:grid;grid-template-columns:1fr;gap:2.5rem}
+@media (min-width:1024px){.signs{grid-template-columns:22rem 1fr}}
+.signs-intro p{font-size:.95rem;color:var(--ink-soft);margin-top:1rem;max-width:20rem}
+.signs ul{border-top:1px solid var(--hairline)}
+.signs li{border-bottom:1px solid var(--hairline)}
+.signs li>div{display:flex;align-items:center;gap:1.5rem;padding:1.5rem 0}
+.signs .k{width:2.5rem;font-size:.75rem;color:var(--rose-light);font-family:var(--font-display);font-weight:400;flex-shrink:0}
+.signs .t{flex:1}
+.signs .t b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.25rem;letter-spacing:-.02em}
+.signs .t span{display:block;font-size:.85rem;color:var(--ink-soft);margin-top:.25rem}
+.signs .dot{width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid var(--hairline);display:grid;place-items:center;flex-shrink:0}
+.signs .dot svg{width:1.1rem;height:1.1rem;opacity:.55}
+
+/* living background */
+.fx{position:absolute;inset:0;z-index:-8;width:100%;height:100%;pointer-events:none}
+.hero .fx{z-index:-9}
+.breathe{animation:breathe 22s ease-in-out infinite alternate;transform-origin:50% 60%}
+@keyframes breathe{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.08) translate3d(-1.5%,1%,0)}}
+.aurora{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;width:48vw;height:48vw;border-radius:50%;filter:blur(90px);opacity:.28;mix-blend-mode:screen;will-change:transform}
+.aurora i:nth-child(1){left:-12%;top:-10%;background:radial-gradient(circle,#ff3d92 0%,transparent 60%);animation:drift1 26s ease-in-out infinite alternate}
+.aurora i:nth-child(2){right:-15%;top:25%;background:radial-gradient(circle,#b0186a 0%,transparent 60%);animation:drift2 32s ease-in-out infinite alternate}
+.aurora i:nth-child(3){left:25%;bottom:-25%;background:radial-gradient(circle,#ff8ac2 0%,transparent 60%);animation:drift3 29s ease-in-out infinite alternate;opacity:.18}
+@keyframes drift1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(18vw,14vh,0) scale(1.25)}}
+@keyframes drift2{from{transform:translate3d(0,0,0) scale(1.1)}to{transform:translate3d(-16vw,-18vh,0) scale(.9)}}
+@keyframes drift3{from{transform:translate3d(0,0,0) scale(.9)}to{transform:translate3d(12vw,-12vh,0) scale(1.2)}}
+
+/* facts: extra blocks */
+.lead{margin-top:2rem;max-width:44rem;font-size:1.05rem;line-height:1.6;color:var(--ink-soft)}
+@media (min-width:768px){.facts-grid{grid-template-columns:repeat(4,1fr)}}
+.block-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:5rem}
+@media (min-width:1024px){.block-grid{grid-template-columns:1fr 1fr}}
+.block{border:1px solid var(--hairline);border-radius:var(--radius-card);padding:2rem;background:rgba(255,184,214,.03);backdrop-filter:blur(6px)}
+.block h3,.history h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem;line-height:1.1;letter-spacing:-.02em;margin-top:1rem;max-width:22rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.chips li{font-size:.8rem;padding:.5rem .9rem;border-radius:var(--radius-pill);border:1px solid var(--hairline);color:var(--ink);transition:border-color .25s,background .25s}
+.chips li:hover{border-color:var(--rose);background:rgba(240,40,126,.15)}
+.note{margin-top:1.5rem;font-size:.85rem;color:var(--ink-soft)}
+.steps{list-style:none;counter-reset:s;margin-top:1.5rem;display:flex;flex-direction:column;gap:1.25rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.5rem 1fr;gap:.5rem}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--font-display);font-size:.75rem;color:var(--rose-light);padding-top:.25rem}
+.steps b{display:block;font-weight:600;font-size:1rem}
+.steps span{display:block;grid-column:2;font-size:.85rem;color:var(--ink-soft);margin-top:.25rem}
+.history{margin-top:5rem;padding-top:3rem;border-top:1px solid var(--hairline);display:grid;grid-template-columns:1fr;gap:2rem}
+@media (min-width:1024px){.history{grid-template-columns:22rem 1fr}}
+.history-cols{display:grid;grid-template-columns:1fr;gap:1.5rem;font-size:.95rem;line-height:1.65;color:var(--ink-soft)}
+@media (min-width:768px){.history-cols{grid-template-columns:1fr 1fr;gap:2.5rem}}
+
+/* ---------- cta ---------- */
+.cta{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius-card-lg);margin-top:.75rem;padding:7rem 1.5rem 3.5rem;min-height:38rem;display:flex;flex-direction:column}
+@media (min-width:640px){.cta{padding:8rem 2.5rem 4rem}}
+.cta .plate{position:absolute;inset:0;z-index:-10;overflow:hidden}
+.cta .plate .layer{position:absolute;left:0;right:0;top:-16%;height:132%;will-change:transform}
+.cta .plate img{width:100%;height:100%;object-fit:cover;object-position:center 60%;transform:scaleY(-1)}
+.cta .plate::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,3,9,.85),rgba(11,3,9,.35) 50%,rgba(11,3,9,.9))}
+.cta-body{display:flex;flex-direction:column;gap:2rem;align-items:flex-start}
+@media (min-width:768px){.cta-body{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.cta h2{font-family:var(--font-display);font-weight:500;font-size:4.6rem;line-height:.92;letter-spacing:-.035em}
+.cta h2 em{font-style:normal;color:var(--rose-light)}
+.cta-side{max-width:20rem}
+.cta-side p{font-size:.95rem;color:var(--ink-soft)}
+.pill{display:inline-flex;align-items:center;gap:.6rem;border-radius:var(--radius-pill);padding:1rem 1.75rem;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;background:var(--ink);color:var(--bg);transition:background .25s,color .25s;margin-top:1.5rem}
+.pill:hover{background:var(--rose);color:#fff}
+.pill svg{width:1rem;height:1rem;will-change:transform}
+
+footer{margin-top:auto;padding-top:2.5rem;border-top:1px solid var(--hairline);display:flex;flex-direction:column;gap:1rem;font-size:.8rem;color:var(--ink-soft)}
+@media (min-width:640px){footer{flex-direction:row;justify-content:space-between;align-items:center;margin-top:auto}}
+footer .brand{color:var(--ink);font-size:.8rem}
+footer nav{display:flex;gap:1.25rem}
+footer nav a:hover{color:var(--ink)}
+
+@media (max-width:640px){
+  .tag{white-space:nowrap;padding:.45rem .8rem;font-size:.6rem}
+  .h2{font-size:2.5rem}
+  .cta h2{font-size:2.3rem}
+  .cta{min-height:auto;padding-top:5rem}
+  .stat dd{font-size:3.6rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .clip>span{transition-duration:1ms!important;transition-delay:0ms!important}
+  [data-inview]{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="mark">
+    <svg class="ribbon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 2-4 4.2 0 3.3 4 6.8 4 6.8s4-3.5 4-6.8C16 5 14.5 3 12 3z"/><path d="M9.6 9.5 5 21M14.4 9.5 19 21"/></svg>
+    Grupo Dias
+  </div>
+  <div class="track"><div class="fill"></div></div>
+</div>
+
+<main>
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero" id="topo">
+  <div class="plate"><div class="layer" data-parallax="0,12"><img class="breathe" src="assets/sky.png" alt="" fetchpriority="high"></div></div>
+  <canvas class="fx" aria-hidden="true"></canvas>
+  <div class="grain"></div>
+
+  <header>
+    <a class="brand" href="#topo" aria-label="Grupo Dias">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 2-4 4.2 0 3.3 4 6.8 4 6.8s4-3.5 4-6.8C16 5 14.5 3 12 3z"/><path d="M9.6 9.5 5 21M14.4 9.5 19 21"/></svg>
+      Grupo Dias
+    </a>
+    <nav>
+      <a href="#fatos" data-scroll>Por que outubro</a>
+      <a href="#agende" data-scroll>Agende</a>
+    </nav>
+    <span class="tag"><i></i>Outubro 2026</span>
+  </header>
+
+  <div class="hero-title">
+    <h1 id="hero-h1" data-words data-stagger="140" data-dur="1100" data-gate="loader">Outubro Rosa</h1>
+    <p class="hero-eyebrow" data-inview data-from="0,14" data-delay="900" data-gate="loader"><i></i>Campanha de prevenção ao câncer de mama</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div>
+      <p class="tagline" data-lines data-base="350" data-stagger="110" data-dur="900" data-gate="loader">
+        <span>Cuidar de você</span>
+        <span>é <em>um ato de amor.</em></span>
+      </p>
+      <p class="hero-note" data-inview data-from="0,20" data-delay="700" data-gate="loader">Este mês, o Grupo Dias veste rosa para lembrar: descoberto cedo, o câncer de mama tem cura na grande maioria dos casos.</p>
+    </div>
+
+    <div class="team" data-parallax="0,-10">
+      <figure data-inview data-from="0,80,0.9" data-rot="-6" data-delay="650" data-gate="loader" data-spring="170,26">
+        <img src="assets/p1.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa da campanha" loading="lazy">
+        <figcaption><b>Grupo Dias</b>veste rosa</figcaption>
+      </figure>
+      <figure data-inview data-from="0,80,0.9" data-delay="780" data-gate="loader" data-spring="170,26">
+        <img src="assets/p2.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa com o logo da empresa" loading="lazy">
+        <figcaption><b>Outubro Rosa</b>2026</figcaption>
+      </figure>
+      <figure data-inview data-from="0,80,0.9" data-rot="6" data-delay="910" data-gate="loader" data-spring="170,26">
+        <img src="assets/p3.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa da campanha" loading="lazy">
+        <figcaption><b>Prevenção</b>é cuidado</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. FATOS ===== -->
+<section class="facts" id="fatos">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <canvas class="fx" aria-hidden="true"></canvas>
+  <div class="ghost" data-parallax-x="-4,4" aria-hidden="true">Prevenir</div>
+
+  <p class="eyebrow" data-inview data-from="0,14"><i></i>Por que falamos disso</p>
+  <h2 class="h2" data-lines data-stagger="120">
+    <span>O que todo mundo</span>
+    <span>precisa <em>saber.</em></span>
+  </h2>
+
+  <p class="lead" data-inview data-from="0,20" data-delay="200">O câncer de mama é o mais comum entre as mulheres no Brasil e no mundo. Ele não escolhe idade nem histórico — mas, descoberto cedo, é um dos que mais respondem ao tratamento. Os números abaixo explicam por que um mês inteiro é dedicado a falar disso.</p>
+
+  <dl class="facts-grid">
+    <div class="stat" data-inview data-from="0,30" data-delay="0" data-spring="180,24">
+      <dt class="sr-only">Novos casos por ano no Brasil</dt>
+      <dd><span data-count="74">0</span><small>mil</small></dd>
+      <p><b>novos casos por ano</b> estimados pelo INCA no Brasil. É o tipo de câncer mais frequente entre as brasileiras, fora o de pele.</p>
+    </div>
+    <div class="stat" data-inview data-from="0,30" data-delay="110" data-spring="180,24">
+      <dt class="sr-only">Mortes por ano no Brasil</dt>
+      <dd><span data-count="18">0</span><small>mil</small></dd>
+      <p><b>mortes por ano</b> no país. A maioria delas ligada ao diagnóstico tardio — quando a doença já saiu da mama.</p>
+    </div>
+    <div class="stat" data-inview data-from="0,30" data-delay="220" data-spring="180,24">
+      <dt class="sr-only">Chance de cura no diagnóstico precoce</dt>
+      <dd><span data-count="95">0</span><small>%</small></dd>
+      <p><b>de chance de cura</b> quando o tumor é encontrado no início, ainda pequeno e localizado. Por isso o exame regular importa tanto.</p>
+    </div>
+    <div class="stat" data-inview data-from="0,30" data-delay="330" data-spring="180,24">
+      <dt class="sr-only">Casos evitáveis com hábitos saudáveis</dt>
+      <dd><span data-count="30">0</span><small>%</small></dd>
+      <p><b>dos casos podem ser evitados</b> com hábitos saudáveis: peso adequado, atividade física, menos álcool e amamentação.</p>
+    </div>
+  </dl>
+
+  <div class="block-grid">
+    <div class="block" data-inview data-from="0,30" data-delay="0" data-spring="190,26">
+      <p class="eyebrow"><i></i>Quem tem mais risco</p>
+      <h3>Alguns fatores pesam mais que outros.</h3>
+      <ul class="chips">
+        <li>Idade acima de 50 anos</li>
+        <li>Mãe, irmã ou filha com a doença</li>
+        <li>Primeira menstruação antes dos 12</li>
+        <li>Menopausa depois dos 55</li>
+        <li>Primeira gravidez depois dos 30</li>
+        <li>Excesso de peso após a menopausa</li>
+        <li>Consumo de álcool</li>
+        <li>Sedentarismo</li>
+        <li>Reposição hormonal prolongada</li>
+      </ul>
+      <p class="note">Ter um fator de risco não significa ter a doença — e não ter nenhum não dispensa o exame. Cerca de 1% dos casos acontece em homens.</p>
+    </div>
+    <div class="block" data-inview data-from="0,30" data-delay="120" data-spring="190,26">
+      <p class="eyebrow"><i></i>Como se cuidar</p>
+      <h3>Três camadas de proteção.</h3>
+      <ol class="steps">
+        <li><b>Conheça o seu corpo</b><span>Observe e toque as mamas no dia a dia — no banho, ao se vestir. Você é quem melhor percebe o que mudou.</span></li>
+        <li><b>Mamografia de rastreamento</b><span>Dos 50 aos 69 anos, a cada dois anos, pelo SUS — mesmo sem sintomas. A Sociedade Brasileira de Mastologia recomenda anual a partir dos 40.</span></li>
+        <li><b>Hábitos que protegem</b><span>Peso saudável, 150 minutos de atividade por semana, pouco ou nenhum álcool, e amamentar quando possível.</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="signs">
+    <div class="signs-intro">
+      <p class="eyebrow" data-inview data-from="0,14"><i></i>Sinais que merecem atenção</p>
+      <p data-inview data-from="0,20" data-delay="120">Conhecer o próprio corpo é o primeiro exame. Qualquer mudança que persista pede uma consulta — sem pânico, sem adiar.</p>
+    </div>
+    <ul>
+      <li><div data-inview data-from="0,26" data-delay="0" data-spring="190,26" data-hover-arrow><span class="k">01</span><span class="t"><b>Nódulo na mama ou axila</b><span>Geralmente indolor, endurecido e fixo. É o sinal mais comum.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
+      <li><div data-inview data-from="0,26" data-delay="90" data-spring="190,26" data-hover-arrow><span class="k">02</span><span class="t"><b>Pele retraída ou avermelhada</b><span>Aspecto de casca de laranja, ondulações ou vermelhidão que não passa.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
+      <li><div data-inview data-from="0,26" data-delay="180" data-spring="190,26" data-hover-arrow><span class="k">03</span><span class="t"><b>Alteração no mamilo</b><span>Inversão, descamação ou saída de líquido sem apertar.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
+      <li><div data-inview data-from="0,26" data-delay="270" data-spring="190,26" data-hover-arrow><span class="k">04</span><span class="t"><b>Mudança de tamanho ou forma</b><span>Uma mama diferente da outra de forma repentina, ou dor persistente.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
+    </ul>
+  </div>
+
+  <div class="history">
+    <div data-inview data-from="0,20">
+      <p class="eyebrow"><i></i>De onde vem o laço</p>
+      <h3>Um mês, uma cor, uma conversa que salva vidas.</h3>
+    </div>
+    <div class="history-cols">
+      <p data-inview data-from="0,20" data-delay="100">O Outubro Rosa nasceu nos Estados Unidos, nos anos 1990, quando o laço cor-de-rosa passou a ser distribuído em corridas e eventos pela cura do câncer de mama. A ideia era simples: tornar visível um assunto que ficava em silêncio.</p>
+      <p data-inview data-from="0,20" data-delay="200">No Brasil, a campanha ganhou força em 2002, quando o Obelisco do Ibirapuera, em São Paulo, foi iluminado de rosa. Desde então, prédios, monumentos e empresas de todo o país se vestem da cor em outubro — e o Grupo Dias faz parte disso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. CTA + FOOTER ===== -->
+<section class="cta" id="agende">
+  <div class="plate"><div class="layer" data-parallax="-8,8"><img src="assets/sky.png" alt="" loading="lazy"></div></div>
+  <div class="grain"></div>
+
+  <div class="cta-body">
+    <div>
+      <p class="eyebrow" data-inview data-from="0,14"><i></i>Sua vez</p>
+      <h2 data-lines data-stagger="110">
+        <span>Marque a sua</span>
+        <span><em>mamografia.</em></span>
+      </h2>
+    </div>
+    <div class="cta-side" data-inview data-from="0,24" data-delay="200" data-spring="200,24">
+      <p>Um exame de poucos minutos. Compartilhe com uma mulher que você ama — às vezes o lembrete é o que faltava.</p>
+      <a class="pill" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20campanha%20Outubro%20Rosa%20do%20Grupo%20Dias." target="_blank" rel="noopener" data-hover-x>Falar com o Grupo Dias <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+
+  <footer>
+    <a class="brand" href="#topo" data-scroll>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-4 2-4 4.2 0 3.3 4 6.8 4 6.8s4-3.5 4-6.8C16 5 14.5 3 12 3z"/><path d="M9.6 9.5 5 21M14.4 9.5 19 21"/></svg>
+      Grupo Dias
+    </a>
+    <span>Fonte dos dados: INCA · Ministério da Saúde</span>
+    <nav><a href="#topo" data-scroll>Topo</a><a href="#fatos" data-scroll>Prevenção</a><a href="#agende" data-scroll>Agende</a></nav>
+  </footer>
+</section>
+
+</main>
+
+<script type="module">
+import Lenis from "lenis";
+
+/* ---------- constants ---------- */
+const FONT_BASE=16, BASE_W=1920, COEF=0.6666;
+const MIN_VISIBLE_MS=1400, MAX_VISIBLE_MS=2600, EXIT_MS=850;
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isMobile = () => innerWidth <= 768;
+const html=document.documentElement;
+
+/* ---------- adaptive rem (scale-up above 1920) ---------- */
+function fitRoot(){
+  const reduction=((BASE_W-innerWidth)/BASE_W)*100*COEF;
+  const size=FONT_BASE-(FONT_BASE*reduction)/100;
+  if(size>FONT_BASE) html.style.fontSize=size+"px"; else html.style.removeProperty("font-size");
+}
+fitRoot(); addEventListener("resize",fitRoot);
+scrollTo(0,0);
+
+/* ---------- lenis ---------- */
+const lenis=new Lenis({smoothWheel:true});
+const lock=()=>{lenis.stop();html.classList.add("locked")};
+const unlock=()=>{lenis.start();html.classList.remove("locked")};
+document.querySelectorAll("[data-scroll]").forEach(a=>a.addEventListener("click",e=>{
+  const t=document.querySelector(a.getAttribute("href")); if(!t) return;
+  e.preventDefault(); lenis.scrollTo(t,{offset:-8,duration:1.4});
+}));
+
+/* ---------- spring engine ---------- */
+const springs=new Set();
+function spring(el, from, to, {tension=200,friction=26}={}, onDone){
+  // from/to: {x,y,scale,opacity,rot}
+  const s={el, cur:{...from}, vel:{}, target:{...to}, tension, friction, onDone};
+  for(const k in s.cur) s.vel[k]=0;
+  el.__spring=s; springs.add(s); paint(s); return s;
+}
+function retarget(el,to){ if(el.__spring){Object.assign(el.__spring.target,to);springs.add(el.__spring);} }
+function paint(s){
+  const c=s.cur, t=[];
+  if(c.x!==undefined||c.y!==undefined) t.push(`translate3d(${c.x||0}px,${c.y||0}px,0)`);
+  if(c.rot!==undefined) t.push(`rotate(${c.rot}deg)`);
+  if(c.scale!==undefined) t.push(`scale(${c.scale})`);
+  s.el.style.transform=t.join(" ");
+  if(c.opacity!==undefined) s.el.style.opacity=c.opacity;
+}
+function stepSprings(dt){
+  for(const s of springs){
+    let settled=true;
+    for(const k in s.target){
+      const x=s.cur[k], tg=s.target[k];
+      let v=s.vel[k]||0;
+      v+=(-s.tension*(x-tg)-s.friction*v)*dt;
+      let nx=x+v*dt;
+      if(Math.abs(nx-tg)<0.001&&Math.abs(v)<0.01){nx=tg;v=0;} else settled=false;
+      s.cur[k]=nx; s.vel[k]=v;
+    }
+    paint(s);
+    if(settled){springs.delete(s); s.onDone&&s.onDone();}
+  }
+}
+
+/* ---------- parallax ---------- */
+const plx=[...document.querySelectorAll("[data-parallax],[data-parallax-x]")].map(el=>{
+  const axis=el.hasAttribute("data-parallax")?"y":"x";
+  const [a,b]=(el.dataset.parallax||el.dataset.parallaxX).split(",").map(Number);
+  const section=el.closest("section")||el.parentElement;
+  return {el,axis,a,b,section};
+});
+function stepParallax(){
+  const vh=innerHeight;
+  for(const p of plx){
+    const r=p.section.getBoundingClientRect();
+    const prog=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));
+    const v=p.a+(p.b-p.a)*prog;
+    p.el.style.transform=p.axis==="y"?`translate3d(0,${v}%,0)`:`translate3d(${v}%,0,0)`;
+  }
+}
+
+/* ---------- floating shards (canvas) ---------- */
+const fxs=[...document.querySelectorAll("canvas.fx")].map(cv=>{
+  const ctx=cv.getContext("2d"); const n=isMobile()?22:48; const P=[];
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  const mk=()=>({x:Math.random(),y:Math.random(),w:rnd(6,26),h:rnd(2,9),rot:rnd(-.9,.9),vx:rnd(-.012,.012),vy:rnd(-.05,-.012),vr:rnd(-.3,.3),a:rnd(.15,.7),tw:rnd(.6,2.2),ph:rnd(0,6.28),d:rnd(.3,1)});
+  for(let i=0;i<n;i++) P.push(mk());
+  const fit=()=>{const r=cv.parentElement.getBoundingClientRect();cv.width=r.width;cv.height=r.height;};
+  fit(); addEventListener("resize",fit);
+  return {cv,ctx,P,mk};
+});
+function stepFx(t,dt){
+  for(const f of fxs){
+    const r=f.cv.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) continue;
+    const {ctx,cv,P}=f, W=cv.width, H=cv.height;
+    ctx.clearRect(0,0,W,H);
+    for(const p of P){
+      p.x+=p.vx*dt*p.d; p.y+=p.vy*dt*p.d; p.rot+=p.vr*dt;
+      if(p.y<-.1){Object.assign(p,f.mk(),{y:1.1});}
+      if(p.x<-.1)p.x=1.1; if(p.x>1.1)p.x=-.1;
+      const glow=.5+.5*Math.sin(t/1000*p.tw+p.ph);
+      ctx.save(); ctx.translate(p.x*W,p.y*H); ctx.rotate(p.rot);
+      ctx.globalAlpha=p.a*(.4+.6*glow);
+      const g=ctx.createLinearGradient(-p.w,0,p.w,0);
+      g.addColorStop(0,"rgba(255,184,214,0)"); g.addColorStop(.5,"#ffd1e6"); g.addColorStop(1,"rgba(240,40,126,0)");
+      ctx.fillStyle=g; ctx.shadowColor="#ff4fa0"; ctx.shadowBlur=14*glow;
+      ctx.fillRect(-p.w*p.d,-p.h*p.d/2,p.w*2*p.d,p.h*p.d);
+      ctx.restore();
+    }
+  }
+}
+
+/* ---------- count-up numbers ---------- */
+function countUp(el){
+  const end=Number(el.dataset.count), t0=performance.now(), dur=1600;
+  const tick=now=>{const k=Math.min(1,(now-t0)/dur); const e=1-Math.pow(1-k,4); el.textContent=Math.round(end*e); if(k<1) requestAnimationFrame(tick);};
+  requestAnimationFrame(tick);
+}
+
+/* ---------- rAF loop ---------- */
+let last=performance.now();
+function raf(t){
+  const dt=Math.min(0.05,(t-last)/1000); last=t;
+  lenis.raf(t); stepSprings(dt); stepParallax(); if(!reduced) stepFx(t,dt);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* ---------- text splitting ---------- */
+function splitWords(el){
+  const words=el.textContent.trim().split(/\s+/);
+  el.textContent="";
+  words.forEach((w,i)=>{
+    const c=document.createElement("span"); c.className="clip";
+    const s=document.createElement("span"); s.className="w"; s.textContent=w+(i<words.length-1?" ":"");
+    c.appendChild(s); el.appendChild(c);
+  });
+}
+function splitLines(el){
+  [...el.children].forEach(line=>{
+    const c=document.createElement("span"); c.className="clip"; c.style.display="block";
+    const s=document.createElement("span"); s.style.display="block"; s.innerHTML=line.innerHTML;
+    c.appendChild(s); line.replaceWith(c);
+  });
+}
+function playClips(el,{base=0,stagger=120,dur=950}){
+  el.querySelectorAll(".clip").forEach((c,i)=>{
+    c.style.setProperty("--dur",dur+"ms");
+    c.style.setProperty("--delay",(base+i*stagger)+"ms");
+    requestAnimationFrame(()=>c.classList.add("in"));
+  });
+}
+document.querySelectorAll("[data-words]").forEach(splitWords);
+document.querySelectorAll("[data-lines]").forEach(splitLines);
+
+/* ---------- inview ---------- */
+function parseFrom(str){ const [x=0,y=0,scale=1]=str.split(",").map(Number); return {x,y,scale,opacity:0}; }
+function playInview(el){
+  if(el.__played) return; el.__played=true;
+  if(reduced){el.style.opacity=1;return;}
+  const from=parseFrom(el.dataset.from||"0,28");
+  const [tension,friction]=(el.dataset.spring||"200,26").split(",").map(Number);
+  const delay=Number(el.dataset.delay||0);
+  el.querySelectorAll("[data-count]").forEach(c=>setTimeout(()=>countUp(c),delay+200));
+  const to={x:0,y:0,scale:1,opacity:1};
+  if(el.dataset.rot){ from.rot=to.rot=Number(el.dataset.rot); }
+  setTimeout(()=>{ spring(el,from,to,{tension,friction},()=>{ if(!el.dataset.rot) el.style.transform=""; }); },delay);
+}
+function playText(el){
+  if(el.__played) return; el.__played=true;
+  playClips(el,{base:Number(el.dataset.base||0),stagger:Number(el.dataset.stagger||120),dur:Number(el.dataset.dur||950)});
+}
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target; io.unobserve(el);
+    if(el.hasAttribute("data-gate")&&!ready){ gated.push(el); return; }
+    el.matches("[data-words],[data-lines]")?playText(el):playInview(el);
+  });
+},{threshold:0.15});
+document.querySelectorAll("[data-inview],[data-words],[data-lines]").forEach(el=>io.observe(el));
+
+/* ---------- hover micro-interactions (disabled on mobile) ---------- */
+function hover(el, target, from, to, cfg){
+  if(isMobile()) return;
+  spring(target,from,from,cfg);
+  el.addEventListener("pointerenter",()=>retarget(target,to));
+  el.addEventListener("pointerleave",()=>retarget(target,from));
+}
+document.querySelectorAll("[data-hover-arrow]").forEach(row=>{
+  const arrow=row.querySelector(".dot svg");
+  hover(row,arrow,{x:0,opacity:.55},{x:6,opacity:1},{tension:300,friction:20});
+});
+document.querySelectorAll("[data-hover-x]").forEach(btn=>{
+  hover(btn,btn.querySelector("svg"),{x:0},{x:5},{tension:320,friction:20});
+});
+document.querySelectorAll(".team figure").forEach(f=>{
+  if(isMobile()) return;
+  const img=f.querySelector("img");
+  hover(f,img,{scale:1},{scale:1.05},{tension:300,friction:22});
+});
+
+/* ---------- loader ---------- */
+let ready=false; const gated=[];
+const loader=document.getElementById("loader");
+const mark=loader.querySelector(".mark"), fill=loader.querySelector(".fill");
+lock();
+spring(mark,{y:16,opacity:0},{y:0,opacity:1},{tension:200,friction:22});
+const minMs=reduced?200:MIN_VISIBLE_MS;
+if(!reduced){
+  fill.style.transition=`transform ${minMs-120}ms cubic-bezier(.65,0,.35,1) 120ms`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>fill.style.transform="scaleX(1)"));
+}
+function reveal(){
+  if(ready) return; ready=true;
+  unlock();
+  if(reduced){ loader.remove(); }
+  else{
+    loader.style.transition=`transform ${EXIT_MS}ms cubic-bezier(.65,0,.35,1)`;
+    loader.style.transform="translateY(-105%)";
+    setTimeout(()=>loader.remove(),EXIT_MS);
+  }
+  gated.forEach(el=>el.matches("[data-words],[data-lines]")?playText(el):playInview(el));
+  if(location.hash&&document.querySelector(location.hash)) lenis.scrollTo(location.hash,{immediate:true,offset:-8});
+}
+let started=false;
+function startCountdown(){ if(started) return; started=true; setTimeout(reveal,minMs); }
+if(document.readyState==="complete") startCountdown(); else addEventListener("load",startCountdown);
+setTimeout(startCountdown,MAX_VISIBLE_MS);
+</script>
+</body>
+</html>
