@@ -101,9 +101,9 @@ header nav a:hover{opacity:1}
 
 .hero-bottom{margin-top:auto;padding:0 1.5rem 2rem;display:flex;flex-direction:column;gap:1.5rem;align-items:flex-start}
 @media (min-width:640px){.hero-bottom{padding:0 2.5rem 2.5rem;flex-direction:row;justify-content:space-between;align-items:flex-end}}
-.tagline{font-family:var(--font-display);font-weight:400;font-size:2.1rem;line-height:1.02;letter-spacing:-.02em;max-width:24rem}
+.tagline{font-family:var(--font-display);font-weight:400;font-size:3.1rem;line-height:1.02;letter-spacing:-.02em;max-width:34rem;margin-top:1.75rem}
 .tagline em{font-size:1.18em;color:var(--rose)}
-.hero-note{margin-top:1.25rem;max-width:20rem;font-size:.9rem;color:var(--plum-soft)}
+.hero-note{margin-top:1.25rem;max-width:26rem;font-size:1rem;color:var(--plum-soft)}
 
 /* floating module: Grupo Dias veste rosa */
 .float{width:100%;max-width:22rem;will-change:transform}
@@ -200,7 +200,8 @@ footer nav a:hover{color:var(--plum)}
   .stat dd{font-size:3.2rem}
   .tagline,.hero-note,.hero-eyebrow{max-width:100%}
   .hero{min-height:auto;height:auto}
-  .hero-bottom{padding-bottom:1.5rem;margin-top:3rem}
+  .hero-bottom{padding-bottom:1.5rem;margin-top:2rem}
+  .tagline{font-size:2.2rem;margin-top:1.25rem}
   .float{max-width:100%}
   .stage{aspect-ratio:5/4}
 }
@@ -244,16 +245,15 @@ footer nav a:hover{color:var(--plum)}
   <div class="hero-title">
     <h1 id="hero-h1" data-words data-stagger="140" data-dur="1100" data-gate="loader">Outubro Rosa</h1>
     <p class="hero-eyebrow" data-inview data-from="0,14" data-delay="900" data-gate="loader"><i></i>Campanha de prevenção ao câncer de mama</p>
+    <p class="tagline" data-lines data-base="350" data-stagger="110" data-dur="900" data-gate="loader">
+      <span>Cuidar de você</span>
+      <span>é <em>um ato de amor.</em></span>
+    </p>
+    <p class="hero-note" data-inview data-from="0,20" data-delay="700" data-gate="loader">Este mês, o Grupo Dias veste rosa para lembrar: descoberto cedo, o câncer de mama tem cura na grande maioria dos casos.</p>
   </div>
 
   <div class="hero-bottom">
-    <div>
-      <p class="tagline" data-lines data-base="350" data-stagger="110" data-dur="900" data-gate="loader">
-        <span>Cuidar de você</span>
-        <span>é <em>um ato de amor.</em></span>
-      </p>
-      <p class="hero-note" data-inview data-from="0,20" data-delay="700" data-gate="loader">Este mês, o Grupo Dias veste rosa para lembrar: descoberto cedo, o câncer de mama tem cura na grande maioria dos casos.</p>
-    </div>
+    <div></div>
 
     <div class="float" data-inview data-from="0,40,0.96" data-delay="650" data-gate="loader" data-spring="200,26" data-parallax="0,-8">
       <article class="module" aria-roledescription="carrossel" aria-label="Grupo Dias veste rosa">
