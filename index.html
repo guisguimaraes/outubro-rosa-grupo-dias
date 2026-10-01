@@ -56,8 +56,14 @@ main{width:100%;overflow-x:clip;padding:.5rem}
 
 /* ---------- living gradient (the reference image, moving) ---------- */
 .mesh{position:absolute;inset:0;z-index:-10;overflow:hidden;background:var(--rose-mid)}
-.mesh i{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform;opacity:.95}
-.mesh .glow{left:50%;top:50%;width:70vw;height:110vh;translate:-50% -50%;background:radial-gradient(ellipse at center,#fff 0%,#ffe9f2 35%,rgba(255,227,238,0) 70%);filter:blur(50px);animation:glow 14s ease-in-out infinite alternate}
+.mesh i{position:absolute;border-radius:50%;will-change:transform;opacity:.95}
+.mesh .glow{left:50%;top:50%;width:70vw;height:110vh;translate:-50% -50%;background:radial-gradient(ellipse at center,#ffd6e6 0%,#ffb9d4 40%,rgba(255,179,211,0) 70%);animation:glow 14s ease-in-out infinite alternate}
+.hero .mesh .glow{opacity:.55}
+.spot{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen;opacity:calc(1 - var(--p))}
+#laco{position:fixed;left:0;top:0;z-index:60;width:8rem;pointer-events:none;will-change:transform,width;filter:drop-shadow(0 18px 30px rgba(122,15,69,.28));opacity:0;transition:opacity .8s}
+#laco.on{opacity:1}
+#laco img{width:100%;height:auto;animation:lacoFloat 5s ease-in-out infinite}
+@keyframes lacoFloat{0%,100%{translate:0 0;rotate:-3deg}50%{translate:0 -.6rem;rotate:3deg}}
 .mesh .b1{left:-15%;top:-20%;width:55vw;height:55vw;background:radial-gradient(circle,#ff6fae 0%,rgba(255,111,174,0) 62%);animation:m1 24s ease-in-out infinite alternate}
 .mesh .b2{right:-18%;top:10%;width:60vw;height:60vw;background:radial-gradient(circle,#ff5aa4 0%,rgba(255,90,164,0) 62%);animation:m2 30s ease-in-out infinite alternate}
 .mesh .b3{left:20%;bottom:-35%;width:65vw;height:65vw;background:radial-gradient(circle,#ffb3d3 0%,rgba(255,179,211,0) 62%);animation:m3 27s ease-in-out infinite alternate}
@@ -81,9 +87,11 @@ main{width:100%;overflow-x:clip;padding:.5rem}
 header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 1.5rem 0;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--plum)}
 @media (min-width:640px){header{padding:2rem 2.5rem 0}}
 .brand{display:flex;align-items:center;white-space:nowrap}
-.brand img{height:4.2rem;width:auto;filter:drop-shadow(0 6px 14px rgba(122,15,69,.18))}
-footer .brand img{height:3rem}
-@media (max-width:640px){.brand img{height:3.2rem}}
+.brand img{height:5.6rem;width:auto;filter:drop-shadow(0 6px 14px rgba(122,15,69,.18))}
+footer .brand img{height:3.6rem}
+@media (max-width:640px){.brand img{height:3.6rem}}
+header{padding-top:1rem}
+@media (min-width:640px){header{padding-top:1.25rem}}
 header nav{display:none;gap:2rem}
 @media (min-width:1024px){header nav{display:flex}}
 header nav a{opacity:.75}
@@ -91,12 +99,37 @@ header nav a:hover{opacity:1}
 .tag{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.45);backdrop-filter:blur(10px);font-size:.65rem;white-space:nowrap}
 .tag i{width:.4rem;height:.4rem;border-radius:50%;background:var(--rose)}
 
-/* ---------- hero ---------- */
-.hero{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius-card-lg);min-height:calc(100svh - 1rem);display:flex;flex-direction:column;color:var(--plum)}
-@media (min-width:640px){.hero{min-height:calc(100svh - 1.5rem)}}
-.hero-title{padding:1.5rem 1.5rem 0}
+/* ---------- hero: sticky scene, two doors ---------- */
+.hero-scene{position:relative;height:260svh}
+.scene-anchor{position:absolute;left:0;top:96svh;width:1px;height:1px}
+.hero{position:sticky;top:.5rem;isolation:isolate;overflow:hidden;border-radius:var(--radius-card-lg);height:calc(100svh - 1rem);display:flex;flex-direction:column;color:var(--plum);--p:0}
+@media (min-width:640px){.hero{top:.75rem;height:calc(100svh - 1.5rem)}}
+.door{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;z-index:-5;will-change:transform}
+.door .mesh{position:absolute;inset:0;z-index:0}
+.door .grain{z-index:1}
+.door-l{left:0;transform:translate3d(calc(var(--p)*-104%),0,0)}
+.door-r{right:0;transform:translate3d(calc(var(--p)*104%),0,0)}
+.mesh-light{background:#ffa9cd}
+.mesh-light .glow{opacity:.9;background:radial-gradient(ellipse at center,#ffe9f2 0%,#ffcfe2 40%,rgba(255,179,211,0) 70%)}
+.door-ring{position:absolute;left:50%;top:55%;width:min(46vw,72vh);aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:1px solid rgba(255,255,255,.55);box-shadow:0 0 0 2.5rem rgba(255,255,255,.12),0 0 0 5rem rgba(255,255,255,.07);z-index:2;animation:ringPulse 6s ease-in-out infinite}
+@keyframes ringPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.hero>header,.hero-title,.hero-bottom{opacity:calc(1 - var(--p)*1.6)}
+.hero.opened>header,.hero.opened .hero-title,.hero.opened .hero-bottom{visibility:hidden;pointer-events:none}
+@media (max-width:640px){
+  .door{width:100%;left:0;right:0}
+  .door-l{top:0;bottom:30%;transform:translate3d(0,calc(var(--p)*-104%),0)}
+  .door-r{top:70%;bottom:0;transform:translate3d(0,calc(var(--p)*104%),0)}
+  .hero .link-arrow,.hero .scroll-hint{display:none}
+  .hero .tagline{font-size:1.75rem;margin-top:1rem}
+  .hero .hero-note{font-size:.95rem;margin-top:.9rem}
+  .hero .hero-actions .pill{margin-top:1.1rem}
+  .door-ring{width:min(52vw,24vh);top:50%}
+}
+.hero-title{padding:1.5rem 1.5rem 0;width:50%;min-width:min(100%,34rem)}
 @media (min-width:640px){.hero-title{padding:2rem 2.5rem 0}}
-.hero h1{font-family:var(--font-display);font-weight:500;text-transform:uppercase;line-height:.86;letter-spacing:-.03em;font-size:12.4vw;white-space:nowrap;color:#fff;text-shadow:0 .04em .12em rgba(240,40,126,.28)}
+@media (max-width:640px){.hero-title{width:100%}}
+.hero h1{font-family:var(--font-display);font-weight:500;text-transform:uppercase;line-height:.88;letter-spacing:-.03em;font-size:clamp(2.6rem,6.4vw,7.4rem);white-space:nowrap;color:#fff;text-shadow:0 .04em .12em rgba(240,40,126,.28)}
+@media (max-width:640px){.hero h1{font-size:clamp(2.4rem,11vw,4rem)}}
 .hero h1 .clip{display:block}
 .hero h1 .clip:last-child{color:var(--rose);padding-left:.08em;text-shadow:0 .04em .14em rgba(255,255,255,.55)}
 .hero-eyebrow{margin-top:1.25rem;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--plum-soft);display:flex;align-items:center;gap:.6rem;font-weight:600}
@@ -123,7 +156,7 @@ header nav a:hover{opacity:1}
 .facts{position:relative;border-radius:var(--radius-card-lg);margin-top:.75rem;background:var(--white);padding:6rem 1.5rem;overflow:hidden;isolation:isolate}
 @media (min-width:640px){.facts{padding:7rem 2.5rem}}
 .facts .aurora{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.facts .aurora i{position:absolute;width:48vw;height:48vw;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+.facts .aurora i{position:absolute;width:48vw;height:48vw;border-radius:50%;opacity:.55;will-change:transform}
 .facts .aurora i:nth-child(1){left:-12%;top:-10%;background:radial-gradient(circle,#ffd3e5 0%,transparent 60%);animation:m1 26s ease-in-out infinite alternate}
 .facts .aurora i:nth-child(2){right:-15%;top:25%;background:radial-gradient(circle,#ffc2db 0%,transparent 60%);animation:m2 32s ease-in-out infinite alternate}
 .facts .aurora i:nth-child(3){left:25%;bottom:-25%;background:radial-gradient(circle,#ffe3ee 0%,transparent 60%);animation:m3 29s ease-in-out infinite alternate}
@@ -158,20 +191,20 @@ header nav a:hover{opacity:1}
 .steps li::before{content:counter(s,decimal-leading-zero);grid-row:span 2;width:2.75rem;height:2.75rem;border-radius:50%;display:grid;place-items:center;background:var(--rose-light);font-family:var(--font-display);font-size:.72rem;color:var(--rose)}
 .steps b{display:block;font-family:var(--font-serif);font-weight:500;font-size:1.35rem;line-height:1.2;color:var(--plum);padding-top:.5rem}
 .steps span{display:block;grid-column:2;font-size:1rem;line-height:1.6;color:var(--plum-soft)}
-.signs{margin-top:6rem;display:grid;grid-template-columns:1fr;gap:2.5rem}
-@media (min-width:1024px){.signs{grid-template-columns:24rem 1fr;gap:4rem}}
-.signs-intro h3{font-family:var(--font-serif);font-weight:500;font-size:2.2rem;line-height:1.08;margin-top:1rem;color:var(--plum)}
-.signs-intro p:not(.eyebrow){font-size:1.05rem;line-height:1.6;color:var(--plum-soft);margin-top:1.25rem;max-width:22rem}
-.signs ul{border-top:1px solid var(--hairline)}
-.signs li{border-bottom:1px solid var(--hairline)}
-.signs li>div{display:flex;align-items:center;gap:1.75rem;padding:1.9rem 0;transition:padding-left .4s cubic-bezier(.16,1,.3,1)}
-.signs li>div:hover{padding-left:.75rem}
-.signs .k{width:2.5rem;font-size:.8rem;color:var(--rose);font-family:var(--font-display);flex-shrink:0}
-.signs .t{flex:1}
-.signs .t b{display:block;font-family:var(--font-serif);font-weight:500;font-size:1.7rem;line-height:1.15;letter-spacing:-.01em;color:var(--plum)}
-.signs .t span{display:block;font-size:1rem;line-height:1.55;color:var(--plum-soft);margin-top:.4rem;max-width:36rem}
-.signs .dot{width:3rem;height:3rem;border-radius:50%;border:1px solid rgba(90,18,56,.18);display:grid;place-items:center;flex-shrink:0;color:var(--rose);background:#fff}
-.signs .dot svg{width:1.15rem;height:1.15rem}
+.signs{margin-top:6rem}
+.signs-intro{display:grid;grid-template-columns:1fr;gap:1.25rem}
+@media (min-width:1024px){.signs-intro{grid-template-columns:1fr 26rem;gap:4rem;align-items:end}}
+.signs-intro h3{font-family:var(--font-serif);font-weight:500;font-size:2.4rem;line-height:1.08;margin-top:1rem;color:var(--plum)}
+.signs-intro h3 em{font-weight:400}
+.signs-intro>p{font-size:1.05rem;line-height:1.6;color:var(--plum-soft)}
+.signs-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:2.75rem}
+@media (min-width:640px){.signs-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1280px){.signs-grid{grid-template-columns:repeat(4,1fr)}}
+.signs-grid li{display:flex;flex-direction:column;border-radius:var(--radius-card);background:#fff;border:1px solid var(--hairline);padding:1.75rem;min-height:15rem;transition:border-color .3s,box-shadow .5s}
+.signs-grid li:hover{border-color:var(--rose-mid);box-shadow:0 30px 50px -32px rgba(122,15,69,.4)}
+.signs-grid .k{width:2.75rem;height:2.75rem;border-radius:50%;display:grid;place-items:center;background:var(--rose-light);font-family:var(--font-display);font-size:.72rem;color:var(--rose)}
+.signs-grid b{display:block;margin-top:auto;padding-top:2rem;font-family:var(--font-serif);font-weight:500;font-size:1.55rem;line-height:1.15;letter-spacing:-.01em;color:var(--plum)}
+.signs-grid .d{display:block;margin-top:.6rem;font-size:1rem;line-height:1.55;color:var(--plum-soft)}
 .history{margin-top:6rem;padding-top:3.5rem;border-top:1px solid var(--hairline);display:grid;grid-template-columns:1fr;gap:2rem}
 @media (min-width:1024px){.history{grid-template-columns:24rem 1fr;gap:4rem}}
 .history-cols{display:grid;grid-template-columns:1fr;gap:1.75rem;font-size:1.08rem;line-height:1.7;color:var(--plum-soft)}
@@ -179,20 +212,29 @@ header nav a:hover{opacity:1}
 .history-cols p::first-letter{font-family:var(--font-serif);font-size:2.6em;line-height:.8;float:left;padding:.15em .12em 0 0;color:var(--rose)}
 
 /* ---------- elas (team cards) ---------- */
-.team{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius-card-lg);margin-top:.75rem;background:var(--rose-light);padding:6rem 1.5rem}
-@media (min-width:640px){.team{padding:7rem 2.5rem}}
-.team .aurora{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.team .aurora i{position:absolute;width:48vw;height:48vw;border-radius:50%;filter:blur(90px);opacity:.7;will-change:transform}
-.team .aurora i:nth-child(1){left:-12%;top:-10%;background:radial-gradient(circle,#ffb8d6 0%,transparent 60%);animation:m1 26s ease-in-out infinite alternate}
-.team .aurora i:nth-child(2){right:-15%;top:25%;background:radial-gradient(circle,#ff9fc8 0%,transparent 60%);animation:m2 32s ease-in-out infinite alternate}
-.team .aurora i:nth-child(3){left:25%;bottom:-25%;background:radial-gradient(circle,#fff 0%,transparent 60%);animation:m3 29s ease-in-out infinite alternate}
-.team>*:not(.aurora):not(.fx){position:relative;z-index:1}
-.team-head{display:flex;flex-direction:column;gap:1.5rem}
-@media (min-width:1024px){.team-head{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.reveal{position:absolute;inset:0;z-index:-6;background:var(--rose-light);display:flex;flex-direction:column;justify-content:center;gap:1.75rem;padding:2rem 2.5rem;overflow:hidden;opacity:clamp(0,calc(var(--p)*1.5),1);transform:scale(calc(.94 + var(--p)*.06))}
+.reveal .aurora{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.reveal .aurora i{position:absolute;width:48vw;height:48vw;border-radius:50%;opacity:.7;will-change:transform}
+.reveal .aurora i:nth-child(1){left:-12%;top:-10%;background:radial-gradient(circle,#ffb8d6 0%,transparent 60%);animation:m1 26s ease-in-out infinite alternate}
+.reveal .aurora i:nth-child(2){right:-15%;top:25%;background:radial-gradient(circle,#ff9fc8 0%,transparent 60%);animation:m2 32s ease-in-out infinite alternate}
+.reveal .aurora i:nth-child(3){left:25%;bottom:-25%;background:radial-gradient(circle,#fff 0%,transparent 60%);animation:m3 29s ease-in-out infinite alternate}
+.reveal>*:not(.aurora){position:relative;z-index:1}
+.reveal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem}
+.reveal .h2{font-size:2.8rem;margin-top:.6rem;max-width:none}
 .team-lead{max-width:24rem;font-size:1rem;line-height:1.6;color:var(--plum-soft)}
-.cards{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:4rem}
-@media (min-width:768px){.cards{grid-template-columns:repeat(3,1fr);gap:1.75rem;align-items:start}.cards li:nth-child(2){margin-top:3rem}}
-.cards li{perspective:1200px}
+.cards{--ch:calc(100svh - 17rem);display:grid;grid-template-columns:repeat(3,min(calc((100vw - 10rem)/3),calc(var(--ch)*.8)));justify-content:center;gap:1.5rem}
+.cards li{perspective:1200px;rotate:var(--r);opacity:clamp(0,calc((var(--p) - .35 - var(--i)*.08)*3.2),1);transform:translate3d(0,calc((1 - var(--p))*(5rem + var(--i)*3rem)),0)}
+.cards li:nth-child(2){margin-top:1.5rem}
+@media (max-width:640px){
+  .reveal{padding:1.5rem 1.25rem;justify-content:flex-start;gap:1.25rem}
+  .reveal-head{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .reveal .h2{font-size:2rem}
+  .team-lead{font-size:.9rem}
+  .cards{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -1.25rem;padding:0 1.25rem 1rem;scrollbar-width:none}
+  .cards::-webkit-scrollbar{display:none}
+  .cards li{flex:0 0 74%;scroll-snap-align:center;rotate:0deg}
+  .cards li:nth-child(2){margin-top:0}
+}
 .card{border-radius:var(--radius-card);background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(14px);box-shadow:0 30px 60px -28px rgba(122,15,69,.35),inset 0 1px 0 #fff;padding:.9rem;transform-style:preserve-3d;will-change:transform}
 .card-photo{position:relative;aspect-ratio:4/5;border-radius:1rem;overflow:hidden;background:#fff;transform:translateZ(24px)}
 .card-photo img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .9s cubic-bezier(.16,1,.3,1)}
@@ -203,6 +245,14 @@ header nav a:hover{opacity:1}
 .card h3{font-family:var(--font-serif);font-weight:500;font-size:1.6rem;line-height:1.1;margin-top:.5rem;color:var(--plum)}
 .card-role{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--plum-soft);margin-top:.35rem}
 .card blockquote{margin-top:1rem;font-family:var(--font-serif);font-style:italic;font-size:1.05rem;line-height:1.45;color:var(--plum);border-left:2px solid var(--rose);padding-left:.9rem}
+
+.reveal .card{position:relative;padding:.6rem}
+.reveal .card-photo{aspect-ratio:4/5}
+.reveal .card-body{position:absolute;left:1.2rem;right:1.2rem;bottom:1.2rem;padding:.9rem 1.1rem;border-radius:.9rem;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);transform:translateZ(30px)}
+.reveal .card h3{margin-top:0;font-size:1.5rem}
+.reveal .card blockquote{font-size:.92rem;margin-top:0;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s cubic-bezier(.16,1,.3,1),opacity .4s,margin-top .4s}
+.reveal .card:hover blockquote{max-height:9rem;opacity:1;margin-top:.75rem}
+@media (max-width:640px){.reveal .card-photo{aspect-ratio:auto;height:min(52svh,26rem)}.reveal .card blockquote{max-height:none;opacity:1;margin-top:.6rem;font-size:.85rem}}
 
 /* ---------- cta ---------- */
 .cta{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius-card-lg);margin-top:.75rem;padding:7rem 1.5rem 3.5rem;min-height:38rem;display:flex;flex-direction:column;color:var(--plum)}
@@ -228,7 +278,6 @@ footer nav a:hover{color:var(--plum)}
   .cta{min-height:auto;padding-top:5rem}
   .stat dd{font-size:3.2rem}
   .tagline,.hero-note,.hero-eyebrow{max-width:100%}
-  .hero{min-height:auto;height:auto}
   .hero-bottom{padding-bottom:1.5rem;margin-top:2rem}
   .tagline{font-size:2.2rem;margin-top:1.25rem}
   .float{max-width:100%}
@@ -250,11 +299,55 @@ footer nav a:hover{color:var(--plum)}
 
 <main>
 
-<!-- ===== 1. HERO ===== -->
-<section class="hero" id="topo">
-  <div class="mesh" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="glow"></i></div>
-  <canvas class="fx" aria-hidden="true"></canvas>
-  <div class="grain"></div>
+<!-- ===== 1. HERO (duas portas que se abrem no scroll) ===== -->
+<div class="hero-scene" id="topo">
+<section class="hero">
+  <div class="door door-l" aria-hidden="true"><div class="mesh"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="glow"></i></div><div class="grain"></div></div>
+  <div class="door door-r" aria-hidden="true"><div class="mesh mesh-light"><i class="b2"></i><i class="b4"></i><i class="glow"></i></div><div class="grain"></div><span class="door-ring"></span></div>
+  <!-- revelado quando as portas se abrem -->
+  <div class="reveal">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="reveal-head">
+      <div>
+        <p class="eyebrow"><i></i>Outubro Rosa 2026</p>
+        <h2 class="h2">Clínica Dias <em>veste rosa.</em></h2>
+      </div>
+      <p class="team-lead">Não é só uma camiseta. É o nosso time lembrando, uma à outra e a quem chega até aqui, que cuidar de si não pode esperar.</p>
+    </div>
+    <ul class="cards">
+      <li style="--i:0;--r:-2deg">
+        <article class="card" data-tilt>
+          <div class="card-photo"><img src="assets/p1.png" alt="Priscila, da Clínica Dias, vestindo a camiseta rosa da campanha" draggable="false"><span class="glare" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Priscila</h3>
+            <p class="card-role">Time Clínica Dias</p>
+            <blockquote>“Faço o exame todo ano porque aprendi com a minha mãe que cuidar de si é cuidar de quem a gente ama.”</blockquote>
+          </div>
+        </article>
+      </li>
+      <li style="--i:1;--r:0deg">
+        <article class="card" data-tilt>
+          <div class="card-photo"><img src="assets/p2.png" alt="Aline, da Clínica Dias, vestindo a camiseta rosa com o logo do Grupo Dias" draggable="false"><span class="glare" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Aline</h3>
+            <p class="card-role">Time Clínica Dias</p>
+            <blockquote>“Vestir rosa é abrir a conversa. Se uma pessoa marcar a mamografia por causa disso, já valeu.”</blockquote>
+          </div>
+        </article>
+      </li>
+      <li style="--i:2;--r:2deg">
+        <article class="card" data-tilt>
+          <div class="card-photo"><img src="assets/p3.png" alt="Sara, da Clínica Dias, vestindo a camiseta rosa da campanha" draggable="false"><span class="glare" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>Sara</h3>
+            <p class="card-role">Time Clínica Dias</p>
+            <blockquote>“Prevenção não é medo. É a gente escolhendo estar aqui por muito tempo.”</blockquote>
+          </div>
+        </article>
+      </li>
+    </ul>
+  </div>
+  <canvas class="spot" id="spot" aria-hidden="true"></canvas>
 
   <header>
     <a class="brand" href="#topo" aria-label="Clínica Dias — Medicina Especializada">
@@ -262,7 +355,7 @@ footer nav a:hover{color:var(--plum)}
     </a>
     <nav>
       <a href="#fatos" data-scroll>Por que outubro</a>
-      <a href="#elas" data-scroll>Elas</a>
+      <a href="#elas" data-scroll>Nosso time</a>
       <a href="#agende" data-scroll>Agende</a>
     </nav>
     <span class="tag"><i></i>Outubro 2026</span>
@@ -277,15 +370,17 @@ footer nav a:hover{color:var(--plum)}
     </p>
     <p class="hero-note" data-inview data-from="0,20" data-delay="700" data-gate="loader">Este mês, a Clínica Dias veste rosa para lembrar: descoberto cedo, o câncer de mama tem cura na grande maioria dos casos.</p>
     <div class="hero-actions" data-inview data-from="0,20" data-delay="850" data-gate="loader">
-      <a class="pill" href="#agende" data-scroll data-hover-x>Marcar mamografia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="pill" href="https://wa.me/553138496156?text=Ol%C3%A1!%20Vim%20pela%20campanha%20Outubro%20Rosa%20e%20quero%20marcar%20minha%20mamografia." target="_blank" rel="noopener" data-hover-x>Marcar mamografia <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="link-arrow" href="#fatos" data-scroll>Por que outubro é rosa</a>
     </div>
   </div>
 
   <div class="hero-bottom">
-    <p class="scroll-hint" data-inview data-from="0,10" data-delay="1200" data-gate="loader"><span></span>Role para descobrir</p>
+    <p class="scroll-hint" data-inview data-from="0,10" data-delay="1200" data-gate="loader"><span></span>Role para abrir</p>
   </div>
 </section>
+<span id="elas" class="scene-anchor" aria-hidden="true"></span>
+</div>
 
 <!-- ===== 2. FATOS ===== -->
 <section class="facts" id="fatos">
@@ -353,15 +448,17 @@ footer nav a:hover{color:var(--plum)}
 
   <div class="signs">
     <div class="signs-intro">
-      <p class="eyebrow" data-inview data-from="0,14"><i></i>Sinais que merecem atenção</p>
-      <h3 data-inview data-from="0,20" data-delay="80">O que observar no <em>dia a dia.</em></h3>
+      <div>
+        <p class="eyebrow" data-inview data-from="0,14"><i></i>Sinais que merecem atenção</p>
+        <h3 data-inview data-from="0,20" data-delay="80">O que observar no <em>dia a dia.</em></h3>
+      </div>
       <p data-inview data-from="0,20" data-delay="160">Conhecer o próprio corpo é o primeiro exame. Qualquer mudança que persista pede uma consulta — sem pânico, sem adiar.</p>
     </div>
-    <ul>
-      <li><div data-inview data-from="0,26" data-delay="0" data-spring="190,26" data-hover-arrow><span class="k">01</span><span class="t"><b>Nódulo na mama ou axila</b><span>Geralmente indolor, endurecido e fixo. É o sinal mais comum.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
-      <li><div data-inview data-from="0,26" data-delay="90" data-spring="190,26" data-hover-arrow><span class="k">02</span><span class="t"><b>Pele retraída ou avermelhada</b><span>Aspecto de casca de laranja, ondulações ou vermelhidão que não passa.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
-      <li><div data-inview data-from="0,26" data-delay="180" data-spring="190,26" data-hover-arrow><span class="k">03</span><span class="t"><b>Alteração no mamilo</b><span>Inversão, descamação ou saída de líquido sem apertar.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
-      <li><div data-inview data-from="0,26" data-delay="270" data-spring="190,26" data-hover-arrow><span class="k">04</span><span class="t"><b>Mudança de tamanho ou forma</b><span>Uma mama diferente da outra de forma repentina, ou dor persistente.</span></span><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></li>
+    <ul class="signs-grid">
+      <li data-inview data-from="0,30" data-delay="0" data-spring="190,26"><span class="k">01</span><b>Nódulo na mama ou axila</b><span class="d">Geralmente indolor, endurecido e fixo. É o sinal mais comum.</span></li>
+      <li data-inview data-from="0,30" data-delay="90" data-spring="190,26"><span class="k">02</span><b>Pele retraída ou avermelhada</b><span class="d">Aspecto de casca de laranja, ondulações ou vermelhidão que não passa.</span></li>
+      <li data-inview data-from="0,30" data-delay="180" data-spring="190,26"><span class="k">03</span><b>Alteração no mamilo</b><span class="d">Inversão, descamação ou saída de líquido sem apertar.</span></li>
+      <li data-inview data-from="0,30" data-delay="270" data-spring="190,26"><span class="k">04</span><b>Mudança de tamanho ou forma</b><span class="d">Uma mama diferente da outra de forma repentina, ou dor persistente.</span></li>
     </ul>
   </div>
 
@@ -372,65 +469,12 @@ footer nav a:hover{color:var(--plum)}
     </div>
     <div class="history-cols">
       <p data-inview data-from="0,20" data-delay="100">O Outubro Rosa nasceu nos Estados Unidos, nos anos 1990, quando o laço cor-de-rosa passou a ser distribuído em corridas e eventos pela cura do câncer de mama. A ideia era simples: tornar visível um assunto que ficava em silêncio.</p>
-      <p data-inview data-from="0,20" data-delay="200">No Brasil, a campanha ganhou força em 2002, quando o Obelisco do Ibirapuera, em São Paulo, foi iluminado de rosa. Desde então, prédios, monumentos e empresas de todo o país se vestem da cor em outubro — e o Grupo Dias faz parte disso.</p>
+      <p data-inview data-from="0,20" data-delay="200">No Brasil, a campanha ganhou força em 2002, quando o Obelisco do Ibirapuera, em São Paulo, foi iluminado de rosa. Desde então, prédios, monumentos e empresas de todo o país se vestem da cor em outubro — e a Clínica Dias faz parte disso.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== 3. ELAS ===== -->
-<section class="team" id="elas">
-  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-  <canvas class="fx" aria-hidden="true"></canvas>
-
-  <div class="team-head">
-    <div>
-      <p class="eyebrow" data-inview data-from="0,14"><i></i>Grupo Dias veste rosa</p>
-      <h2 class="h2" data-lines data-stagger="120">
-        <span>Elas vestem</span>
-        <span>a <em>causa.</em></span>
-      </h2>
-    </div>
-    <p class="team-lead" data-inview data-from="0,20" data-delay="200">Não é só uma camiseta. É o time do Grupo Dias lembrando, uma à outra e a quem chega até aqui, que cuidar de si não pode esperar.</p>
-  </div>
-
-  <ul class="cards">
-    <li data-inview data-from="0,60,0.95" data-delay="0" data-spring="180,24" data-rot="-2">
-      <article class="card" data-tilt>
-        <div class="card-photo"><img src="assets/p1.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa da campanha" loading="lazy" draggable="false"><span class="glare" aria-hidden="true"></span></div>
-        <div class="card-body">
-          <span class="card-n">01</span>
-          <h3>Nome da colaboradora</h3>
-          <p class="card-role">Setor · Grupo Dias</p>
-          <blockquote>“Faço o exame todo ano porque aprendi com a minha mãe que cuidar de si é cuidar de quem a gente ama.”</blockquote>
-        </div>
-      </article>
-    </li>
-    <li data-inview data-from="0,60,0.95" data-delay="140" data-spring="180,24" data-rot="0">
-      <article class="card" data-tilt>
-        <div class="card-photo"><img src="assets/p2.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa com o logo da empresa" loading="lazy" draggable="false"><span class="glare" aria-hidden="true"></span></div>
-        <div class="card-body">
-          <span class="card-n">02</span>
-          <h3>Nome da colaboradora</h3>
-          <p class="card-role">Setor · Grupo Dias</p>
-          <blockquote>“Vestir rosa é abrir a conversa. Se uma pessoa marcar a mamografia por causa disso, já valeu.”</blockquote>
-        </div>
-      </article>
-    </li>
-    <li data-inview data-from="0,60,0.95" data-delay="280" data-spring="180,24" data-rot="2">
-      <article class="card" data-tilt>
-        <div class="card-photo"><img src="assets/p3.png" alt="Colaboradora do Grupo Dias vestindo a camiseta rosa da campanha" loading="lazy" draggable="false"><span class="glare" aria-hidden="true"></span></div>
-        <div class="card-body">
-          <span class="card-n">03</span>
-          <h3>Nome da colaboradora</h3>
-          <p class="card-role">Setor · Grupo Dias</p>
-          <blockquote>“Prevenção não é medo. É a gente escolhendo estar aqui por muito tempo.”</blockquote>
-        </div>
-      </article>
-    </li>
-  </ul>
-</section>
-
-<!-- ===== 4. CTA + FOOTER ===== -->
+<!-- ===== 3. CTA + FOOTER ===== -->
 <section class="cta" id="agende">
   <div class="mesh" aria-hidden="true"><i class="b2" style="left:-18%;right:auto"></i><i class="b1" style="right:-15%;left:auto;top:auto;bottom:-20%"></i><i class="b3"></i><i class="glow"></i></div>
   <canvas class="fx" aria-hidden="true"></canvas>
@@ -446,18 +490,20 @@ footer nav a:hover{color:var(--plum)}
     </div>
     <div class="cta-side" data-inview data-from="0,24" data-delay="200" data-spring="200,24">
       <p>Um exame de poucos minutos. Compartilhe com uma mulher que você ama — às vezes o lembrete é o que faltava.</p>
-      <a class="pill" href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20campanha%20Outubro%20Rosa%20da%20Cl%C3%ADnica%20Dias." target="_blank" rel="noopener" data-hover-x>Falar com a Clínica Dias <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="pill" href="https://wa.me/553138496156?text=Ol%C3%A1!%20Vim%20pela%20campanha%20Outubro%20Rosa%20e%20quero%20marcar%20minha%20mamografia." target="_blank" rel="noopener" data-hover-x>Marcar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 
   <footer>
     <a class="brand" href="#topo" data-scroll aria-label="Clínica Dias"><img src="assets/logo.png" alt="Clínica Dias — Medicina Especializada"></a>
     <span>Fonte dos dados: INCA · Ministério da Saúde · SBM</span>
-    <nav><a href="#topo" data-scroll>Topo</a><a href="#fatos" data-scroll>Prevenção</a><a href="#elas" data-scroll>Elas</a><a href="#agende" data-scroll>Agende</a></nav>
+    <nav><a href="#topo" data-scroll>Topo</a><a href="#fatos" data-scroll>Prevenção</a><a href="#elas" data-scroll>Nosso time</a><a href="#agende" data-scroll>Agende</a></nav>
   </footer>
 </section>
 
 </main>
+
+<div id="laco" aria-hidden="true"><img src="assets/laco.png" alt=""></div>
 
 <script type="module">
 import Lenis from "lenis";
@@ -557,11 +603,63 @@ function stepFx(t,dt){
       if(p.y<-.05){Object.assign(p,f.mk(),{y:1.05});}
       if(p.x<-.05)p.x=1.05; if(p.x>1.05)p.x=-.05;
       const glow=.5+.5*Math.sin(t/1000*p.tw+p.ph);
-      const g=ctx.createRadialGradient(p.x*W,p.y*H,0,p.x*W,p.y*H,p.r*3);
+      const rad=Math.max(1,p.r*3);
+      const g=ctx.createRadialGradient(p.x*W,p.y*H,0,p.x*W,p.y*H,rad);
       g.addColorStop(0,`rgba(255,255,255,${p.a*(.5+.5*glow)})`); g.addColorStop(1,"rgba(255,255,255,0)");
-      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x*W,p.y*H,p.r*3,0,6.283); ctx.fill();
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x*W,p.y*H,rad,0,6.283); ctx.fill();
     }
   }
+}
+
+/* ---------- white trail following the mouse (hero) ---------- */
+const spot=document.getElementById("spot"), sctx=spot.getContext("2d");
+const trail=[]; let spotOn=false;
+function fitSpot(){ const r=spot.parentElement.getBoundingClientRect(); spot.width=r.width; spot.height=r.height; }
+fitSpot(); addEventListener("resize",fitSpot);
+spot.parentElement.addEventListener("pointermove",e=>{
+  if(isMobile()) return;
+  const r=spot.getBoundingClientRect();
+  trail.push({x:e.clientX-r.left,y:e.clientY-r.top,t:performance.now()}); spotOn=true;
+  if(trail.length>60) trail.shift();
+});
+function stepSpot(now){
+  if(!spotOn) return;
+  const r=spot.getBoundingClientRect(); if(r.bottom<0) return;
+  sctx.clearRect(0,0,spot.width,spot.height);
+  const R=Math.max(48,spot.width*.035), LIFE=900;
+  for(const p of trail){
+    const age=Math.min(1,Math.max(0,(now-p.t)/LIFE)); if(age>=1) continue;
+    const a=(1-age)*(1-age), rad=Math.max(1,R*(1+age*.5));
+    const g=sctx.createRadialGradient(p.x,p.y,0,p.x,p.y,rad);
+    g.addColorStop(0,`rgba(255,255,255,${.5*a})`); g.addColorStop(.5,`rgba(255,255,255,${.18*a})`); g.addColorStop(1,"rgba(255,255,255,0)");
+    sctx.fillStyle=g; sctx.beginPath(); sctx.arc(p.x,p.y,rad,0,6.283); sctx.fill();
+  }
+  while(trail.length&&now-trail[0].t>LIFE) trail.shift();
+  if(!trail.length) spotOn=false;
+}
+
+/* ---------- hero doors + ribbon that shrinks into the corner ---------- */
+const laco=document.getElementById("laco"), scene=document.querySelector(".hero-scene"), heroEl=document.querySelector(".hero");
+const easeIO=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+function stepLaco(){
+  const rect=scene.getBoundingClientRect();
+  const range=scene.offsetHeight-innerHeight;
+  const raw=range>0?Math.min(1,Math.max(0,-rect.top/range)):1;
+  const p=easeIO(Math.min(1,raw/.55));
+  heroEl.style.setProperty("--p",p.toFixed(4));
+  heroEl.classList.toggle("opened",p>.62);
+  // big: centre of the right door (or bottom half on mobile) → small: bottom-right corner
+  const rem=parseFloat(getComputedStyle(html).fontSize);
+  const mob=isMobile();
+  const bigW=mob?Math.min(innerWidth*.42,innerHeight*.2):Math.min(innerWidth*.34,innerHeight*.56);
+  const bigX=mob?innerWidth*.5:innerWidth*.75, bigY=mob?innerHeight*.85:innerHeight*.55;
+  const smallW=Math.min(Math.max(4.5*rem,innerWidth*.08),9*rem);
+  const m=(mob?1.5:2.5)*rem;
+  const smallX=innerWidth-m-smallW/2, smallY=innerHeight-m-smallW/2;
+  const w=bigW+(smallW-bigW)*p, x=bigX+(smallX-bigX)*p, y=bigY+(smallY-bigY)*p;
+  const drift=(1-p)*Math.sin(performance.now()/1400)*8;
+  laco.style.width=w+"px";
+  laco.style.transform=`translate3d(${x-w/2}px,${y-w/2+drift}px,0) rotate(${(1-p)*-6+Math.sin(scrollY/500)*5*p}deg)`;
 }
 
 /* ---------- count-up ---------- */
@@ -572,11 +670,12 @@ function countUp(el){
 }
 
 /* ---------- rAF loop ---------- */
-let last=performance.now();
+let last=performance.now(), frames=0;
 function raf(t){
-  const dt=Math.min(0.05,(t-last)/1000); last=t;
-  lenis.raf(t); stepSprings(dt); stepParallax(); if(!reduced) stepFx(t,dt);
+  const dt=Math.min(0.05,(t-last)/1000); last=t; frames++;
   requestAnimationFrame(raf);
+  lenis.raf(t); stepSprings(dt); stepParallax();
+  try{ stepLaco(); if(!reduced){ stepFx(t,dt); stepSpot(t); } }catch(err){ console.warn("fx",err); }
 }
 requestAnimationFrame(raf);
 
@@ -686,6 +785,7 @@ function reveal(){
     setTimeout(()=>loader.remove(),EXIT_MS);
   }
   gated.forEach(el=>el.matches("[data-words],[data-lines]")?playText(el):playInview(el));
+  setTimeout(()=>laco.classList.add("on"),900);
   if(location.hash&&document.querySelector(location.hash)) lenis.scrollTo(location.hash,{immediate:true,offset:-8});
 }
 let started=false;
