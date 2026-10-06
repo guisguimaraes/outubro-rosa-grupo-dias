@@ -1,9 +1,10 @@
-# Site estático servido pelo Nginx (deploy no Coolify). Só o site vai pra imagem:
-# instagram/ e remotion/ ficam de fora.
-FROM nginx:1.27-alpine
-# Nginx na porta 3000, a padrão do Coolify (Ports exposes = 3000)
-RUN sed -i -E 's/listen(\s+)80;/listen\13000;/; s/listen(\s+)\[::\]:80;/listen\1[::]:3000;/' /etc/nginx/conf.d/default.conf \
- && grep -q "listen.*3000;" /etc/nginx/conf.d/default.conf
-COPY index.html /usr/share/nginx/html/
-COPY assets /usr/share/nginx/html/assets
+# Site + contador de cliques + painel /admin, num servidor Node sem dependências (deploy no Coolify).
+# instagram/ e remotion/ ficam de fora da imagem.
+# No Coolify: Ports exposes = 3000, variável ADMIN_PASSWORD e um Persistent Storage montado em /data.
+FROM node:24-alpine
+WORKDIR /app
+ENV NODE_ENV=production PORT=3000 DATA_DIR=/data NODE_NO_WARNINGS=1
+COPY server.js index.html admin.html ./
+COPY assets ./assets
 EXPOSE 3000
+CMD ["node", "server.js"]

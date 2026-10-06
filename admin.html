@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Painel Outubro Rosa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff7fa; --surface:#ffffff; --surface-2:#ffe3ee;
+  --ink:#5a1238; --ink-2:rgba(90,18,56,.72); --ink-3:rgba(90,18,56,.5);
+  --hairline:rgba(90,18,56,.12); --grid:rgba(90,18,56,.08);
+  --rose:#f0287e; --rose-soft:#ffb3d3; --track:#fbe6ef;
+  --font-display:"Unbounded",system-ui,sans-serif; --font-body:"Manrope",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1c0b14; --surface:#2a1220; --surface-2:#3a1a2c;
+  --ink:#ffe9f2; --ink-2:rgba(255,233,242,.74); --ink-3:rgba(255,233,242,.5);
+  --hairline:rgba(255,233,242,.12); --grid:rgba(255,233,242,.08);
+  --rose:#ff5fa2; --rose-soft:#8a3360; --track:#3a1a2c;
+}}
+:root[data-theme="dark"]{
+  --bg:#1c0b14; --surface:#2a1220; --surface-2:#3a1a2c;
+  --ink:#ffe9f2; --ink-2:rgba(255,233,242,.74); --ink-3:rgba(255,233,242,.5);
+  --hairline:rgba(255,233,242,.12); --grid:rgba(255,233,242,.08);
+  --rose:#ff5fa2; --rose-soft:#8a3360; --track:#3a1a2c;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:72rem;margin:0 auto;padding:1.5rem 1rem 4rem}
+@media (min-width:768px){.wrap{padding:2.5rem 2rem 5rem}}
+
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 1.5rem}
+.brand{display:flex;align-items:center;gap:.9rem}
+.brand img{height:3rem;width:auto;padding:.4rem .7rem;border-radius:.8rem;background:#fff}
+.brand p{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+.brand h1{font-family:var(--font-display);font-weight:500;font-size:1.25rem;letter-spacing:-.01em;line-height:1.2}
+.periodo{display:flex;gap:.25rem;padding:.25rem;border-radius:999px;background:var(--surface);border:1px solid var(--hairline)}
+.periodo button{padding:.5rem .95rem;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--ink-2);transition:background .2s,color .2s}
+.periodo button[aria-pressed="true"]{background:var(--rose);color:#fff}
+.periodo button:hover:not([aria-pressed="true"]){background:var(--surface-2);color:var(--ink)}
+.status{width:100%;font-size:.8rem;color:var(--ink-3)}
+
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.5rem}
+@media (min-width:900px){.kpis{grid-template-columns:repeat(4,1fr);gap:1rem}}
+.kpi{border-radius:1.25rem;background:var(--surface);border:1px solid var(--hairline);padding:1.25rem 1.25rem 1.1rem}
+.kpi.hot{background:var(--rose);border-color:var(--rose);color:#fff}
+.kpi h2{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.kpi b{display:block;margin-top:.5rem;font-family:var(--font-display);font-weight:500;font-size:2.4rem;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.kpi span{display:block;margin-top:.5rem;font-size:.85rem;opacity:.8}
+
+.grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem}
+@media (min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+.panel{border-radius:1.25rem;background:var(--surface);border:1px solid var(--hairline);padding:1.25rem;min-width:0}
+.panel.wide{grid-column:1/-1}
+.col{display:flex;flex-direction:column;gap:1rem;min-width:0}
+.panel h3{font-size:1rem;font-weight:700}
+.panel .sub{font-size:.82rem;color:var(--ink-3);margin-top:.15rem}
+
+.chart{position:relative;margin-top:1rem}
+.chart svg{display:block;width:100%;height:192px;overflow:visible}
+.chart .gl{stroke:var(--grid);stroke-width:1}
+.chart .ax{fill:var(--ink-3);font-size:11px;font-family:var(--font-body)}
+.chart .bar{fill:var(--rose)}
+.chart .hit{fill:transparent}
+.chart .hit:hover+.bar,.chart g.on .bar{fill:var(--ink)}
+.tip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);margin-top:-.5rem;padding:.45rem .7rem;border-radius:.6rem;background:var(--ink);color:var(--bg);font-size:.8rem;white-space:nowrap;opacity:0;transition:opacity .15s}
+.tip b{font-variant-numeric:tabular-nums}
+
+table{width:100%;border-collapse:collapse;margin-top:.75rem;font-size:.9rem}
+th{text-align:left;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:.5rem .4rem;border-bottom:1px solid var(--hairline)}
+td{padding:.6rem .4rem;border-bottom:1px solid var(--hairline);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.meter{display:block;height:.4rem;border-radius:999px;background:var(--track);margin-top:.35rem;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:999px;background:var(--rose)}
+.empty{padding:1.5rem .4rem;color:var(--ink-3);font-size:.9rem}
+.mute{color:var(--ink-3)}
+.tag{display:inline-block;padding:.15rem .55rem;border-radius:999px;background:var(--surface-2);font-size:.75rem;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <img src="/assets/logo.png" alt="Clínica Dias">
+      <div><p>Painel</p><h1>Outubro Rosa</h1></div>
+    </div>
+    <div class="periodo" role="group" aria-label="Período">
+      <button type="button" data-dias="1">Hoje</button>
+      <button type="button" data-dias="7">7 dias</button>
+      <button type="button" data-dias="30">30 dias</button>
+      <button type="button" data-dias="0">Tudo</button>
+    </div>
+    <p class="status" id="status" aria-live="polite">Carregando…</p>
+  </header>
+
+  <section class="kpis" aria-label="Resumo">
+    <div class="kpi"><h2>Visitas</h2><b id="k-visitas">–</b><span>vezes que o site foi aberto</span></div>
+    <div class="kpi"><h2>Pessoas</h2><b id="k-pessoas">–</b><span>visitantes diferentes</span></div>
+    <div class="kpi hot"><h2>Cliques no WhatsApp</h2><b id="k-cliques">–</b><span id="k-cliques-sub">–</span></div>
+    <div class="kpi"><h2>Conversão</h2><b id="k-conv">–</b><span>das pessoas foram pro WhatsApp</span></div>
+  </section>
+
+  <div class="grid">
+    <section class="panel"><h3>Visitas por dia</h3><p class="sub">Quantas vezes o site foi aberto</p><div class="chart" id="c-visitas"></div></section>
+    <section class="panel"><h3>Cliques no WhatsApp por dia</h3><p class="sub">Quantas vezes alguém tocou num botão de WhatsApp</p><div class="chart" id="c-cliques"></div></section>
+    <section class="panel"><h3>Qual botão levou ao WhatsApp</h3><p class="sub">Cliques por botão do site</p><div id="t-botao"></div></section>
+    <div class="col">
+    <section class="panel"><h3>De onde as pessoas vieram</h3><p class="sub">Instagram, Google, link direto…</p><div id="t-origem"></div></section>
+    <section class="panel"><h3>Celular ou computador</h3><div id="t-disp"></div></section>
+    </div>
+    <section class="panel wide"><h3>Últimos cliques no WhatsApp</h3><p class="sub">Os 25 mais recentes do período</p><div id="t-ultimos"></div></section>
+  </div>
+</div>
+
+<script>
+const BOTOES = {
+  "pacote-card": "Pacote · valor Card",
+  "pacote-particular": "Pacote · valor Particular",
+  "combo-2": "Combo 2 · só laboratório",
+  "o-que-inclui": "Janela “o que está incluso”",
+  "rodape": "Botão final “Agende”",
+  "duvidas": "Link nas Dúvidas",
+  "outro": "Outro",
+};
+const ORIGENS = { direto: "Direto / sem origem", instagram: "Instagram", facebook: "Facebook", google: "Google", whatsapp: "WhatsApp", tiktok: "TikTok", youtube: "YouTube", bing: "Bing" };
+const BRT = 3 * 3600e3, DIA = 86400e3;
+const nf = new Intl.NumberFormat("pt-BR");
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const diaStr = ms => new Date(ms - BRT).toISOString().slice(0, 10);
+const diaCurto = d => d.slice(8, 10) + "/" + d.slice(5, 7);
+const hora = ms => new Date(ms).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+
+let dias = 7;
+try { const s = localStorage.getItem("painel-dias"); if (s !== null && ["0", "1", "7", "30"].includes(s)) dias = Number(s); } catch {}
+
+document.querySelectorAll("[data-dias]").forEach(b => b.addEventListener("click", () => {
+  dias = Number(b.dataset.dias);
+  try { localStorage.setItem("painel-dias", dias); } catch {}
+  carregar();
+}));
+
+// preenche os dias sem movimento, pra o gráfico não pular datas
+function serieDiaria(d) {
+  const mapa = Object.fromEntries(d.porDia.map(r => [r.dia, r]));
+  const primeiro = d.desde || (d.porDia[0] ? Date.parse(d.porDia[0].dia + "T03:00:00Z") : d.agora);
+  const out = [];
+  for (let t = primeiro; diaStr(t) <= diaStr(d.agora); t += DIA) {
+    const k = diaStr(t);
+    out.push({ dia: k, visitas: mapa[k]?.visitas || 0, cliques: mapa[k]?.cliques || 0 });
+  }
+  return out;
+}
+
+function grafico(el, linhas, campo, rotulo) {
+  const W = Math.max(280, el.clientWidth || 600), H = 192, L = 32, B = 22, T = 8;
+  const max = Math.max(1, ...linhas.map(r => r[campo]));
+  const passo = Math.max(1, Math.ceil(max / 4));
+  const topo = passo * Math.ceil(max / passo);
+  const n = linhas.length, slot = (W - L) / n, larg = Math.max(2, Math.min(28, slot - 2));
+  const y = v => T + (H - B - T) * (1 - v / topo);
+  let g = "";
+  for (let v = 0; v <= topo; v += passo) g += `<line class="gl" x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${nf.format(v)}</text>`;
+  const cadaRotulo = Math.ceil(n / 8);
+  linhas.forEach((r, i) => {
+    const cx = L + slot * i + slot / 2, v = r[campo], h = Math.max(0, y(0) - y(v));
+    const raio = Math.min(4, larg / 2, h);
+    // barra com topo arredondado e base reta no zero
+    const x0 = cx - larg / 2, x1 = cx + larg / 2, y0 = y(0), yt = y0 - h;
+    const d = h > 0 ? `M${x0},${y0}V${yt + raio}Q${x0},${yt} ${x0 + raio},${yt}H${x1 - raio}Q${x1},${yt} ${x1},${yt + raio}V${y0}Z` : "";
+    g += `<g data-i="${i}"><rect class="hit" x="${L + slot * i}" y="${T}" width="${slot}" height="${H - T}"/>${d ? `<path class="bar" d="${d}"/>` : ""}</g>`;
+    if ((i % cadaRotulo === 0 && n - 1 - i >= cadaRotulo) || i === n - 1) g += `<text class="ax" x="${cx}" y="${H - 4}" text-anchor="middle">${diaCurto(r.dia)}</text>`;
+  });
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(rotulo)} por dia">${g}</svg><div class="tip"></div>`;
+  const svg = el.querySelector("svg"), tip = el.querySelector(".tip");
+  svg.querySelectorAll("g[data-i]").forEach(gr => {
+    const r = linhas[gr.dataset.i];
+    gr.addEventListener("pointerenter", () => {
+      gr.classList.add("on");
+      const box = gr.querySelector(".hit").getBoundingClientRect(), base = el.getBoundingClientRect();
+      tip.innerHTML = `${diaCurto(r.dia)} · <b>${nf.format(r[campo])}</b> ${rotulo}`;
+      tip.style.left = Math.min(Math.max(box.left + box.width / 2 - base.left, 60), base.width - 60) + "px";
+      tip.style.top = y(r[campo]) + "px";
+      tip.style.opacity = 1;
+    });
+    gr.addEventListener("pointerleave", () => { gr.classList.remove("on"); tip.style.opacity = 0; });
+  });
+}
+
+function tabela(el, cab, linhas, vazio) {
+  if (!linhas.length) { el.innerHTML = `<p class="empty">${vazio}</p>`; return; }
+  el.innerHTML = `<table><thead><tr>${cab.map(c => `<th${c.n ? ' class="n"' : ""}>${c.t}</th>`).join("")}</tr></thead><tbody>${linhas.map(l => `<tr>${l.map((v, i) => `<td${cab[i].n ? ' class="n"' : ""}>${v}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+}
+const comMedidor = (nome, v, max) => `${esc(nome)}<span class="meter"><i style="width:${max ? (v / max) * 100 : 0}%"></i></span>`;
+
+let ultimo = null;
+addEventListener("resize", () => { if (ultimo) { clearTimeout(ultimo.t); ultimo.t = setTimeout(() => render(ultimo.d), 150); } });
+
+function render(d) {
+  ultimo = { d, t: ultimo?.t };
+  const t = d.totais;
+  $("k-visitas").textContent = nf.format(t.visitas);
+  $("k-pessoas").textContent = nf.format(t.pessoas);
+  $("k-cliques").textContent = nf.format(t.cliques);
+  $("k-cliques-sub").textContent = `${nf.format(t.pessoasQueClicaram)} ${t.pessoasQueClicaram === 1 ? "pessoa diferente" : "pessoas diferentes"}`;
+  $("k-conv").textContent = t.pessoas ? Math.round((t.pessoasQueClicaram / t.pessoas) * 100) + "%" : "–";
+
+  const serie = serieDiaria(d);
+  grafico($("c-visitas"), serie, "visitas", "visitas");
+  grafico($("c-cliques"), serie, "cliques", "cliques");
+
+  const maxB = Math.max(0, ...d.porBotao.map(r => r.cliques));
+  tabela($("t-botao"), [{ t: "Botão" }, { t: "Cliques", n: 1 }],
+    d.porBotao.map(r => [comMedidor(BOTOES[r.botao] || r.botao, r.cliques, maxB), nf.format(r.cliques)]),
+    "Nenhum clique no WhatsApp nesse período.");
+
+  const maxO = Math.max(0, ...d.porOrigem.map(r => r.visitas));
+  tabela($("t-origem"), [{ t: "Origem" }, { t: "Visitas", n: 1 }, { t: "Cliques", n: 1 }],
+    d.porOrigem.map(r => [comMedidor(ORIGENS[r.origem] || r.origem, r.visitas, maxO), nf.format(r.visitas), nf.format(r.cliques)]),
+    "Nenhuma visita nesse período.");
+
+  tabela($("t-disp"), [{ t: "Aparelho" }, { t: "Visitas", n: 1 }, { t: "Cliques", n: 1 }],
+    d.porDispositivo.map(r => [r.dispositivo === "celular" ? "Celular" : "Computador", nf.format(r.visitas), nf.format(r.cliques)]),
+    "Nenhuma visita nesse período.");
+
+  tabela($("t-ultimos"), [{ t: "Quando" }, { t: "Botão" }, { t: "Origem" }],
+    d.ultimos.map(r => [`<span class="mute">${hora(r.ts)}</span>`, esc(BOTOES[r.botao] || r.botao), `<span class="tag">${esc(ORIGENS[r.origem] || r.origem)}</span>`]),
+    "Nenhum clique no WhatsApp nesse período.");
+}
+
+async function carregar() {
+  document.querySelectorAll("[data-dias]").forEach(b => b.setAttribute("aria-pressed", Number(b.dataset.dias) === dias));
+  try {
+    const r = await fetch("/api/stats?dias=" + dias, { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    render(await r.json());
+    $("status").textContent = "Atualizado às " + new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) + " · atualiza sozinho a cada minuto";
+  } catch (e) {
+    $("status").textContent = "Não foi possível carregar os dados (" + e.message + "). Tentando de novo em 1 minuto.";
+  }
+}
+carregar();
+setInterval(carregar, 60e3);
+</script>
+</body>
+</html>
