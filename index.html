@@ -291,6 +291,15 @@ header nav a:hover{opacity:1}
 .price-hot .pill{background:#fff;color:var(--rose);box-shadow:0 16px 32px -14px rgba(90,18,56,.5)}
 .price-hot .pill:hover{background:var(--plum);color:#fff}
 .price .pill{position:relative;z-index:1}
+.price-lab{display:grid;grid-template-columns:1fr;gap:2rem;margin-top:1.25rem;background:rgba(255,255,255,.85);backdrop-filter:blur(10px)}
+@media (min-width:1024px){.price-lab{grid-template-columns:1fr 20rem;gap:3.5rem;align-items:end}}
+.price-lab h3{margin-top:1rem;font-family:var(--font-serif);font-weight:500;font-size:2.2rem;line-height:1.08;letter-spacing:-.015em}
+.price-lab h3 em{color:var(--rose)}
+.price-lab .price-k span{background:var(--rose-light)}
+.price-lab .chips{margin-top:1.5rem}
+.price-lab .chips li{font-size:.88rem;padding:.5rem .9rem}
+.price-lab .price-v{margin-top:0;color:var(--rose)}
+@media (max-width:640px){.price-lab h3{font-size:1.8rem}}
 
 dialog.modal{margin:auto;padding:0;border:0;width:min(36rem,calc(100vw - 1.5rem));max-height:calc(100svh - 1.5rem);overflow:auto;overscroll-behavior:contain;border-radius:var(--radius-card-lg);background:var(--bg);color:var(--plum);box-shadow:0 50px 100px -30px rgba(90,18,56,.6)}
 dialog.modal[open]{animation:modalIn .55s cubic-bezier(.16,1,.3,1)}
@@ -525,6 +534,33 @@ footer nav a:hover{color:var(--plum)}
       <button class="pill" type="button" data-modal="m-part" data-hover-x>Quero esse pacote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </article>
   </div>
+
+  <article class="price price-lab" data-inview data-from="0,30" data-delay="0" data-spring="180,24">
+    <div>
+      <p class="price-k">Combo 2 <span>Só laboratório</span></p>
+      <h3>12 exames laboratoriais, <em>sem consulta.</em></h3>
+      <ul class="chips">
+        <li>Hemograma</li>
+        <li>Glicemia de jejum</li>
+        <li>Colesterol total e frações</li>
+        <li>TGO e TGP</li>
+        <li>Ferro sérico</li>
+        <li>Urina rotina</li>
+        <li>TSH</li>
+        <li>Vitamina D</li>
+        <li>Vitamina B12</li>
+        <li>Hemoglobina glicada</li>
+        <li>CA 15-3</li>
+        <li>CA 125</li>
+      </ul>
+    </div>
+    <div>
+      <p class="price-v"><small>R$</small>80<small>,00</small></p>
+      <p class="price-how">valor do combo</p>
+      <p class="price-alt">Inclui os marcadores <b>CA 15-3</b> e <b>CA 125</b></p>
+      <button class="pill" type="button" data-modal="m-lab" data-hover-x>Quero esse combo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </article>
 </section>
 
 <!-- ===== 2. FATOS ===== -->
@@ -637,6 +673,10 @@ footer nav a:hover{color:var(--plum)}
     <details name="faq">
       <summary>Quanto custa o pacote?</summary>
       <div>No valor <b>Card</b>: R$ 280,00 no dinheiro ou Pix, ou R$ 350,00 no cartão. No valor <b>Particular</b>: R$ 380,00 no dinheiro ou Pix, ou R$ 475,00 no cartão.</div>
+    </details>
+    <details name="faq">
+      <summary>Tem opção só com os exames de laboratório?</summary>
+      <div>Tem: o <b>Combo 2</b>, por <b>R$ 80,00</b>. São <b>12 exames laboratoriais</b>: os 10 do pacote mais os marcadores <b>CA 15-3</b> e <b>CA 125</b>. Ele não inclui ultrassom nem consulta.</div>
     </details>
     <details name="faq">
       <summary>Como faço para agendar?</summary>
@@ -754,6 +794,35 @@ footer nav a:hover{color:var(--plum)}
       <li>Consulta ginecológica</li>
     </ul>
     <a class="pill" href="https://wa.me/553138496156?text=Ol%C3%A1!%20Vim%20pela%20campanha%20Outubro%20Rosa%20e%20quero%20agendar%20o%20pacote%20promocional%20(valor%20Particular)." target="_blank" rel="noopener">Agendar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="modal-note">A gente confirma dia e horário na conversa.</p>
+  </div>
+</dialog>
+
+<dialog class="modal" id="m-lab" aria-labelledby="m-lab-t" data-lenis-prevent>
+  <div class="modal-in">
+    <button class="modal-x" type="button" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="eyebrow"><i></i>Combo 2 · Outubro Rosa</p>
+    <h3 id="m-lab-t">Só os <em>exames.</em></h3>
+    <div class="modal-prices">
+      <div><b>R$ 80,00</b><span>valor do combo</span></div>
+      <div><b>12</b><span>exames laboratoriais</span></div>
+    </div>
+    <h4>O combo inclui</h4>
+    <ul class="chips">
+      <li>Hemograma</li>
+      <li>Glicemia de jejum</li>
+      <li>Colesterol total e frações</li>
+      <li>TGO e TGP</li>
+      <li>Ferro sérico</li>
+      <li>Urina rotina</li>
+      <li>TSH</li>
+      <li>Vitamina D</li>
+      <li>Vitamina B12</li>
+      <li>Hemoglobina glicada</li>
+      <li>CA 15-3</li>
+      <li>CA 125</li>
+    </ul>
+    <a class="pill" href="https://wa.me/553138496156?text=Ol%C3%A1!%20Vim%20pela%20campanha%20Outubro%20Rosa%20e%20quero%20agendar%20o%20Combo%202%20(s%C3%B3%20exames%20laboratoriais)." target="_blank" rel="noopener">Agendar pelo WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="modal-note">A gente confirma dia e horário na conversa.</p>
   </div>
 </dialog>
