@@ -1,0 +1,570 @@
+[
+ {
+  "text": "Outubro",
+  "novoBloco": true,
+  "startMs": 397,
+  "endMs": 881,
+  "timestampMs": 639,
+  "confidence": null
+ },
+ {
+  "text": " é",
+  "novoBloco": false,
+  "startMs": 892,
+  "endMs": 951,
+  "timestampMs": 922,
+  "confidence": null
+ },
+ {
+  "text": " rosa.",
+  "novoBloco": false,
+  "startMs": 963,
+  "endMs": 1435,
+  "timestampMs": 1199,
+  "confidence": null
+ },
+ {
+  "text": " Cuidar",
+  "novoBloco": true,
+  "startMs": 1680,
+  "endMs": 2069,
+  "timestampMs": 1874,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "novoBloco": false,
+  "startMs": 2081,
+  "endMs": 2175,
+  "timestampMs": 2128,
+  "confidence": null
+ },
+ {
+  "text": " você",
+  "novoBloco": false,
+  "startMs": 2187,
+  "endMs": 2458,
+  "timestampMs": 2323,
+  "confidence": null
+ },
+ {
+  "text": " é",
+  "novoBloco": true,
+  "startMs": 2470,
+  "endMs": 2529,
+  "timestampMs": 2500,
+  "confidence": null
+ },
+ {
+  "text": " um",
+  "novoBloco": false,
+  "startMs": 2541,
+  "endMs": 2670,
+  "timestampMs": 2606,
+  "confidence": null
+ },
+ {
+  "text": " ato",
+  "novoBloco": false,
+  "startMs": 2682,
+  "endMs": 2883,
+  "timestampMs": 2782,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "novoBloco": false,
+  "startMs": 2894,
+  "endMs": 2965,
+  "timestampMs": 2930,
+  "confidence": null
+ },
+ {
+  "text": " amor.",
+  "novoBloco": false,
+  "startMs": 2977,
+  "endMs": 3295,
+  "timestampMs": 3136,
+  "confidence": null
+ },
+ {
+  "text": " Descoberto",
+  "novoBloco": true,
+  "startMs": 4492,
+  "endMs": 5129,
+  "timestampMs": 4810,
+  "confidence": null
+ },
+ {
+  "text": " cedo,",
+  "novoBloco": false,
+  "startMs": 5141,
+  "endMs": 5565,
+  "timestampMs": 5353,
+  "confidence": null
+ },
+ {
+  "text": " o",
+  "novoBloco": true,
+  "startMs": 5778,
+  "endMs": 5860,
+  "timestampMs": 5819,
+  "confidence": null
+ },
+ {
+  "text": " câncer",
+  "novoBloco": false,
+  "startMs": 5872,
+  "endMs": 6237,
+  "timestampMs": 6055,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "novoBloco": false,
+  "startMs": 6249,
+  "endMs": 6344,
+  "timestampMs": 6297,
+  "confidence": null
+ },
+ {
+  "text": " mama",
+  "novoBloco": false,
+  "startMs": 6355,
+  "endMs": 6662,
+  "timestampMs": 6509,
+  "confidence": null
+ },
+ {
+  "text": " tem",
+  "novoBloco": true,
+  "startMs": 6674,
+  "endMs": 6827,
+  "timestampMs": 6751,
+  "confidence": null
+ },
+ {
+  "text": " até",
+  "novoBloco": false,
+  "startMs": 6839,
+  "endMs": 7051,
+  "timestampMs": 6945,
+  "confidence": null
+ },
+ {
+  "text": " 95%",
+  "novoBloco": false,
+  "startMs": 7063,
+  "endMs": 8313,
+  "timestampMs": 7688,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "novoBloco": false,
+  "startMs": 8325,
+  "endMs": 8407,
+  "timestampMs": 8366,
+  "confidence": null
+ },
+ {
+  "text": " chance",
+  "novoBloco": false,
+  "startMs": 8419,
+  "endMs": 8796,
+  "timestampMs": 8608,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "novoBloco": true,
+  "startMs": 8808,
+  "endMs": 8914,
+  "timestampMs": 8861,
+  "confidence": null
+ },
+ {
+  "text": " cura.",
+  "novoBloco": false,
+  "startMs": 8926,
+  "endMs": 9292,
+  "timestampMs": 9109,
+  "confidence": null
+ },
+ {
+  "text": " Por",
+  "novoBloco": true,
+  "startMs": 10489,
+  "endMs": 10642,
+  "timestampMs": 10566,
+  "confidence": null
+ },
+ {
+  "text": " isso,",
+  "novoBloco": false,
+  "startMs": 10654,
+  "endMs": 10984,
+  "timestampMs": 10819,
+  "confidence": null
+ },
+ {
+  "text": " a",
+  "novoBloco": true,
+  "startMs": 11032,
+  "endMs": 11102,
+  "timestampMs": 11067,
+  "confidence": null
+ },
+ {
+  "text": " Clínica",
+  "novoBloco": false,
+  "startMs": 11114,
+  "endMs": 11586,
+  "timestampMs": 11350,
+  "confidence": null
+ },
+ {
+  "text": " Dias",
+  "novoBloco": false,
+  "startMs": 11598,
+  "endMs": 11940,
+  "timestampMs": 11769,
+  "confidence": null
+ },
+ {
+  "text": " veste",
+  "novoBloco": true,
+  "startMs": 11951,
+  "endMs": 12234,
+  "timestampMs": 12093,
+  "confidence": null
+ },
+ {
+  "text": " rosa.",
+  "novoBloco": false,
+  "startMs": 12246,
+  "endMs": 12694,
+  "timestampMs": 12470,
+  "confidence": null
+ },
+ {
+  "text": " Cuidar",
+  "novoBloco": true,
+  "startMs": 12939,
+  "endMs": 13317,
+  "timestampMs": 13128,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "novoBloco": false,
+  "startMs": 13328,
+  "endMs": 13446,
+  "timestampMs": 13387,
+  "confidence": null
+ },
+ {
+  "text": " si",
+  "novoBloco": false,
+  "startMs": 13458,
+  "endMs": 13623,
+  "timestampMs": 13541,
+  "confidence": null
+ },
+ {
+  "text": " não",
+  "novoBloco": false,
+  "startMs": 13635,
+  "endMs": 13835,
+  "timestampMs": 13735,
+  "confidence": null
+ },
+ {
+  "text": " pode",
+  "novoBloco": false,
+  "startMs": 13847,
+  "endMs": 14107,
+  "timestampMs": 13977,
+  "confidence": null
+ },
+ {
+  "text": " esperar.",
+  "novoBloco": true,
+  "startMs": 14118,
+  "endMs": 14590,
+  "timestampMs": 14354,
+  "confidence": null
+ },
+ {
+  "text": " Preparamos",
+  "novoBloco": true,
+  "startMs": 15787,
+  "endMs": 16341,
+  "timestampMs": 16064,
+  "confidence": null
+ },
+ {
+  "text": " um",
+  "novoBloco": false,
+  "startMs": 16353,
+  "endMs": 16495,
+  "timestampMs": 16424,
+  "confidence": null
+ },
+ {
+  "text": " pacote",
+  "novoBloco": false,
+  "startMs": 16507,
+  "endMs": 16919,
+  "timestampMs": 16713,
+  "confidence": null
+ },
+ {
+  "text": " completo:",
+  "novoBloco": true,
+  "startMs": 16931,
+  "endMs": 17497,
+  "timestampMs": 17214,
+  "confidence": null
+ },
+ {
+  "text": " 10",
+  "novoBloco": true,
+  "startMs": 17721,
+  "endMs": 17863,
+  "timestampMs": 17792,
+  "confidence": null
+ },
+ {
+  "text": " exames,",
+  "novoBloco": false,
+  "startMs": 17874,
+  "endMs": 18429,
+  "timestampMs": 18152,
+  "confidence": null
+ },
+ {
+  "text": " ultrassom",
+  "novoBloco": true,
+  "startMs": 18582,
+  "endMs": 19042,
+  "timestampMs": 18812,
+  "confidence": null
+ },
+ {
+  "text": " de",
+  "novoBloco": false,
+  "startMs": 19054,
+  "endMs": 19148,
+  "timestampMs": 19101,
+  "confidence": null
+ },
+ {
+  "text": " mamas",
+  "novoBloco": false,
+  "startMs": 19160,
+  "endMs": 19455,
+  "timestampMs": 19307,
+  "confidence": null
+ },
+ {
+  "text": " e",
+  "novoBloco": true,
+  "startMs": 19466,
+  "endMs": 19573,
+  "timestampMs": 19520,
+  "confidence": null
+ },
+ {
+  "text": " axilas",
+  "novoBloco": false,
+  "startMs": 19584,
+  "endMs": 20091,
+  "timestampMs": 19838,
+  "confidence": null
+ },
+ {
+  "text": " e",
+  "novoBloco": false,
+  "startMs": 20103,
+  "endMs": 20209,
+  "timestampMs": 20156,
+  "confidence": null
+ },
+ {
+  "text": " consulta",
+  "novoBloco": false,
+  "startMs": 20268,
+  "endMs": 20752,
+  "timestampMs": 20510,
+  "confidence": null
+ },
+ {
+  "text": " ginecológica.",
+  "novoBloco": true,
+  "startMs": 20764,
+  "endMs": 21672,
+  "timestampMs": 21218,
+  "confidence": null
+ },
+ {
+  "text": " Tudo",
+  "novoBloco": true,
+  "startMs": 22869,
+  "endMs": 23093,
+  "timestampMs": 22981,
+  "confidence": null
+ },
+ {
+  "text": " por",
+  "novoBloco": false,
+  "startMs": 23105,
+  "endMs": 23258,
+  "timestampMs": 23182,
+  "confidence": null
+ },
+ {
+  "text": " R$ 280",
+  "novoBloco": false,
+  "startMs": 23270,
+  "endMs": 24567,
+  "timestampMs": 23919,
+  "confidence": null
+ },
+ {
+  "text": " no",
+  "novoBloco": true,
+  "startMs": 24579,
+  "endMs": 24709,
+  "timestampMs": 24644,
+  "confidence": null
+ },
+ {
+  "text": " Pix",
+  "novoBloco": false,
+  "startMs": 24721,
+  "endMs": 24968,
+  "timestampMs": 24845,
+  "confidence": null
+ },
+ {
+  "text": " ou",
+  "novoBloco": false,
+  "startMs": 24980,
+  "endMs": 25145,
+  "timestampMs": 25063,
+  "confidence": null
+ },
+ {
+  "text": " no",
+  "novoBloco": false,
+  "startMs": 25157,
+  "endMs": 25251,
+  "timestampMs": 25204,
+  "confidence": null
+ },
+ {
+  "text": " dinheiro.",
+  "novoBloco": false,
+  "startMs": 25263,
+  "endMs": 25723,
+  "timestampMs": 25493,
+  "confidence": null
+ },
+ {
+  "text": " Agende",
+  "novoBloco": true,
+  "startMs": 26920,
+  "endMs": 27345,
+  "timestampMs": 27133,
+  "confidence": null
+ },
+ {
+  "text": " o",
+  "novoBloco": false,
+  "startMs": 27357,
+  "endMs": 27380,
+  "timestampMs": 27368,
+  "confidence": null
+ },
+ {
+  "text": " seu",
+  "novoBloco": false,
+  "startMs": 27392,
+  "endMs": 27569,
+  "timestampMs": 27481,
+  "confidence": null
+ },
+ {
+  "text": " check-up",
+  "novoBloco": false,
+  "startMs": 27581,
+  "endMs": 27934,
+  "timestampMs": 27758,
+  "confidence": null
+ },
+ {
+  "text": " rosa.",
+  "novoBloco": false,
+  "startMs": 28288,
+  "endMs": 28677,
+  "timestampMs": 28483,
+  "confidence": null
+ },
+ {
+  "text": " Responda",
+  "novoBloco": true,
+  "startMs": 28922,
+  "endMs": 29441,
+  "timestampMs": 29182,
+  "confidence": null
+ },
+ {
+  "text": " este",
+  "novoBloco": false,
+  "startMs": 29453,
+  "endMs": 29653,
+  "timestampMs": 29553,
+  "confidence": null
+ },
+ {
+  "text": " story",
+  "novoBloco": false,
+  "startMs": 29665,
+  "endMs": 30031,
+  "timestampMs": 29848,
+  "confidence": null
+ },
+ {
+  "text": " ou",
+  "novoBloco": true,
+  "startMs": 30042,
+  "endMs": 30137,
+  "timestampMs": 30090,
+  "confidence": null
+ },
+ {
+  "text": " chame",
+  "novoBloco": false,
+  "startMs": 30148,
+  "endMs": 30502,
+  "timestampMs": 30325,
+  "confidence": null
+ },
+ {
+  "text": " no",
+  "novoBloco": false,
+  "startMs": 30514,
+  "endMs": 30608,
+  "timestampMs": 30561,
+  "confidence": null
+ },
+ {
+  "text": " WhatsApp.",
+  "novoBloco": false,
+  "startMs": 30620,
+  "endMs": 31257,
+  "timestampMs": 30939,
+  "confidence": null
+ }
+]
